@@ -111,10 +111,12 @@ function buildError(error) {
 }
 
 // Display products from category
-function displayProducts(subCategories) {
+function getProducts(subCategories) {
   productsDiv.innerHTML = "";
   productsContainer.innerHTML = "";
   productsContainer.classList.add("products");
+
+  console.log(subCategories);
 
   subCategories.forEach((subCategory) => {
     let url = `https://dummyjson.com/products/category/${subCategory}`;
@@ -126,31 +128,7 @@ function displayProducts(subCategories) {
         return response.json();
       })
       .then((data) => {
-        let myHtml = "";
-
-        if (Array.isArray(data.products)) {
-          data.products.forEach((categoriesProducts) => {
-            myHtml += `
-                <figure>
-                  <img src="${categoriesProducts.thumbnail}" alt="${
-              categoriesProducts.title
-            }">
-                  <figcaption>
-                    <h3>${categoriesProducts.title}</h3>
-                    <p>${categoriesProducts.price} $</p>
-                    <div class="rating">${createStars(
-                      categoriesProducts.rating
-                    )}</div>
-                  </figcaption>
-                </figure>
-              `;
-          });
-
-          // Insert products into the container
-          productsDiv.innerHTML = myHtml;
-          productsContainer.appendChild(productsDiv);
-          myApp.appendChild(productsContainer);
-        }
+        displayProducts(data);
       })
       .catch((error) => {
         console.error(error);
@@ -212,7 +190,9 @@ function hideSubCategories(wrapper) {
 
 // Handle subcategory click
 function handleSubcategoryClick(subCategory) {
-  displayProducts([subCategory]);
+  console.log(subCategory);
+
+  getProducts([subCategory]);
 }
 
 // Create stars based on product rating
@@ -298,7 +278,7 @@ function buildHeader() {
 
   const searchInputHTML = `
   <div class="search">
-  <img src="assets/Images/Search-icon .svg" alt="search-logo" />
+  <img src="assets/Images/icons8-search.svg" alt="search-logo" />
   <input id="searchInput" type="text"  placeholder="Search products..." />
   </div>
 `;
@@ -309,7 +289,7 @@ function buildHeader() {
   searchInput.addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
       let searchQuery = event.target.value;
-      displayProducts(searchQuery);
+      searchProducts(searchQuery);
     }
   });
 }
@@ -317,4 +297,65 @@ function buildHeader() {
 function resetView() {
   productsDiv.innerHTML = "";
   productsContainer.innerHTML = "";
+}
+
+function searchProducts(searchQuery) {
+  fetch(`https://dummyjson.com/products/search?q=${searchQuery}`)
+    .then((response) => {
+      if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+      return response;
+    })
+    .then((data) => {
+      console.log(data);
+      getSearchProducts(data.url);
+    })
+    .catch((error) => {
+      console.error(error);
+      buildError(error);
+    });
+}
+
+function getSearchProducts(url) {
+  fetch(url)
+    .then((response) => {
+      if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data.products);
+      displayProducts(data);
+    })
+    .catch((error) => {
+      console.error(error);
+      buildError(error);
+    });
+}
+
+function displayProducts(data) {
+  productsContainer.classList.add("products");
+  let myHtml = "";
+
+  if (Array.isArray(data.products)) {
+    data.products.forEach((categoriesProducts) => {
+      myHtml += `
+          <figure>
+            <img src="${categoriesProducts.thumbnail}" alt="${
+        categoriesProducts.title
+      }">
+            <figcaption>
+              <h3>${categoriesProducts.title}</h3>
+              <p>${categoriesProducts.price} $</p>
+              <div class="rating">${createStars(
+                categoriesProducts.rating
+              )}</div>
+            </figcaption>
+          </figure>
+        `;
+    });
+
+    // Insert products into the container
+    productsDiv.innerHTML = myHtml;
+    productsContainer.appendChild(productsDiv);
+    myApp.appendChild(productsContainer);
+  }
 }
