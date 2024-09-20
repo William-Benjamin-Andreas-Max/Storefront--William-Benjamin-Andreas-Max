@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-//#region VARIABLES
+// Variables
 $footer-background: #f6f8fa;
 $aktiv-color: #1a4d2e;
 $primary-color: #5ece7b;
@@ -10,27 +10,32 @@ $button-hover-bg: $aktiv-color;
 $product-bg: white;
 $product-border: #ddd;
 $product-shadow: rgba(0, 0, 0, 0.1);
-//#endregion
 
-//#region GENERAL RESET
+// General Reset
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
-//#endregion
 
-//#region BODY
 // Set body background and font
 body {
   font-family: Poppins;
   background-color: $footer-background;
   color: #333;
 }
-//#endregion
 
-//#region CATEGORY BUTTONS
 // Style the category buttons
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+}
 button {
   padding: 10px 20px;
   margin: 10px;
@@ -41,42 +46,60 @@ button {
   background-color: transparent;
 }
 
-// Container for category buttons and subcategories
-.category-wrapper {
-  position: relative;
-  display: inline-block;
-}
+.headerNav {
+  display: grid;
+  grid-template-columns: .90fr 1fr;
+  align-items: center;
 
-// Subcategory dropdown
-.subcategories {
-  display: none;
-  position: absolute;
-  top: 100%; // Position below the button
-  left: 0;
-  background-color: #fff;
-  border: 1px solid $product-border;
-  border-radius: 5px;
-  box-shadow: 0 4px 8px $product-shadow;
-  padding: 10px;
-  z-index: 10;
+  .logo {
+    grid-column: 2;
+    display: flex;
+    justify-content: flex-end;
 
-  .subcategory {
-    padding: 5px 10px;
-    cursor: pointer;
+   > img {
+      width: 120px;
+      height: auto;
+      padding: 1rem;
+    }
+  }
 
-    &:hover {
-      background-color: #f0f0f0;
+  .search {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    background-color: #f9f9f9;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    padding: 8px;
+    width: 300px;
+    height: 40px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+
+    img {
+      width: 40px;
+      height: auto;
+      margin-right: 1.1rem;
+    }
+
+    input {
+      border: none;
+      outline: none;
+      flex: 1;
+      font-size: 16px;
+      background-color: #f9f9f9;
+
+      &::placeholder {
+        color: #aaa;
+      }
     }
   }
 }
 
-// Show subcategories when hovering over the category wrapper
-.category-wrapper:hover .subcategories {
-  display: block;
-}
-//#endregion
 
-//#region PRODUCTS
+
+
 // Flexbox for the button container
 #app > div {
   display: flex;
@@ -132,10 +155,9 @@ button {
     }
   }
 }
-//#endregion
 
-//#region ERROR
-// Error container
+// error
+
 .error-container {
   position: fixed;
   display: flex;
@@ -145,26 +167,70 @@ button {
   text-align: center;
   transform: translate(-50%, -50%);
 }
-//#endregion
 
-//#region RATING
 // Ensure the star ratings align well
 .rating {
   display: flex;
   justify-content: flex-start;
   margin-top: 5px;
 }
-//#endregion
 
-//#region FOOTER
-// Footer styles
+// Style the category buttons
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: transparent;
+  position: relative;
+}
+
+// Container for category buttons and subcategories
+.category-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+// Subcategory dropdown
+.subcategories {
+  display: none;
+  position: absolute;
+  top: 100%; // Position below the button
+  left: 0;
+  background-color: #fff;
+  border: 1px solid $product-border;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px $product-shadow;
+  padding: 10px;
+  z-index: 10;
+
+  .subcategory {
+    padding: 5px 10px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #f0f0f0;
+    }
+  }
+}
+
+// Show subcategories when hovering over the category wrapper
+.category-wrapper:hover .subcategories {
+  display: block;
+}
+
+// footer
+
+// #region FOOTER
 .footerMain {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 10rem 0;
-  background-color: $footer-background;
-  max-width: 100%;
+  background-color: var(--footer-bg);
+  max-width: var(--width-full);
   height: 200px;
   position: relative;
   margin-top: 10rem;
@@ -172,31 +238,32 @@ button {
 
 .lists {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
 
   ul {
     display: flex;
     flex-direction: column;
     list-style: none;
-    color: #333;
+    color: var(--black);
     padding: 2rem;
 
     li,
     p {
-      margin-bottom: 1rem;
-      font-size: 1rem;
+      margin-bottom: var(--padding-sm);
+      font-size: var(--font-size-md);
       font-weight: 400;
     }
 
     li a {
       text-decoration: none;
-      color: #333;
+      color: var(--black);
     }
 
     h3 {
-      margin-bottom: 1.5rem;
-      color: $footer-header;
-      font-size: 1.25rem;
+      margin-bottom: var(--padding-md);
+      color: var(--light);
+      font-size: var(--font-size-xl);
     }
   }
 }
@@ -213,11 +280,12 @@ button {
     gap: 1rem;
 
     img {
-      width: 100%;
+      width: var(--rating-img-width);
       height: auto;
     }
   }
 }
+// #endregion
 
 @media (max-width: 1000px) {
   .footerMain {
@@ -225,4 +293,10 @@ button {
   }
 }
 
-//#endregion
+
+@media (max-width: 1400px) {
+  .headerNav {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}

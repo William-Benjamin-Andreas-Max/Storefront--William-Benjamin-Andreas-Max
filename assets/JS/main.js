@@ -15,7 +15,11 @@ let mainCategories = {
 };
 
 let myApp = document.getElementById("app");
+let headerDiv = document.createElement("header");
+myApp.appendChild(headerDiv);
+headerDiv.classList.add("headerNav");
 
+let searchInput = document.getElementById("searchInput");
 let productsDiv = document.createElement("div"); // Div for displaying products
 let productsContainer = document.createElement("div");
 //#endregion
@@ -88,7 +92,7 @@ function sortCategories(data) {
     }
   });
 
-  createButton(mainCategories); // Create buttons for categories
+  createButton(mainCategories);
 }
 
 // Build error message
@@ -108,8 +112,8 @@ function buildError(error) {
 
 // Display products from category
 function displayProducts(subCategories) {
-  productsDiv.innerHTML = ""; // Clear previous products
-  productsContainer.innerHTML = ""; // Clear previous products container
+  productsDiv.innerHTML = "";
+  productsContainer.innerHTML = "";
   productsContainer.classList.add("products");
 
   subCategories.forEach((subCategory) => {
@@ -123,11 +127,9 @@ function displayProducts(subCategories) {
       })
       .then((data) => {
         let myHtml = "";
-        // Loop through each product
 
         if (Array.isArray(data.products)) {
           data.products.forEach((categoriesProducts) => {
-            // Generate HTML for each product
             myHtml += `
                 <figure>
                   <img src="${categoriesProducts.thumbnail}" alt="${
@@ -162,8 +164,7 @@ function displayProducts(subCategories) {
 // Create category buttons and subcategories
 function createButton(data) {
   let buttonDiv = document.createElement("section");
-  myApp.appendChild(buttonDiv);
-
+  buttonDiv.classList.add("category");
   let myHtml = "";
 
   for (let mainCategory in data) {
@@ -184,6 +185,7 @@ function createButton(data) {
   }
 
   buttonDiv.innerHTML = myHtml;
+  headerDiv.prepend(buttonDiv);
 
   // Add event listeners for hover effects
   document.querySelectorAll(".category-wrapper").forEach((wrapper) => {
@@ -278,4 +280,41 @@ function buildFooter() {
 
 // Call the function to build and add the footer to the document
 buildFooter();
+buildHeader();
+
 //#endregion
+function buildHeader() {
+  let logoDiv = document.createElement("div");
+  logoDiv.classList.add("logo");
+  let logoSearch = document.createElement("div");
+
+  let logoHtml = `
+    <img onclick="resetView()" src="assets/Images/Header.svg" alt="logo" class="header-logo">
+  `;
+
+  logoDiv.innerHTML = logoHtml;
+  headerDiv.appendChild(logoSearch);
+  logoSearch.appendChild(logoDiv);
+
+  const searchInputHTML = `
+  <div class="search">
+  <img src="assets/Images/Search-icon .svg" alt="search-logo" />
+  <input id="searchInput" type="text"  placeholder="Search products..." />
+  </div>
+`;
+
+  logoDiv.innerHTML += searchInputHTML;
+
+  searchInput = document.getElementById("searchInput");
+  searchInput.addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+      let searchQuery = event.target.value;
+      displayProducts(searchQuery);
+    }
+  });
+}
+
+function resetView() {
+  productsDiv.innerHTML = "";
+  productsContainer.innerHTML = "";
+}
