@@ -4,6 +4,8 @@ if ("serviceWorker" in navigator) {
 }
 //#endregion
 
+
+
 //#region VARIABLES
 let categories = []; // Store categories
 let mainCategories = {
@@ -23,6 +25,9 @@ let searchInput = document.getElementById("searchInput");
 let productsDiv = document.createElement("div"); // Div for displaying products
 let productsContainer = document.createElement("div");
 //#endregion
+
+
+
 
 //#region DATA FETCHING AND HANDLING
 getData(); // Fetch data
@@ -138,6 +143,9 @@ function getProducts(subCategories) {
 }
 //#endregion
 
+
+
+
 //#region UI FUNCTIONS
 // Create category buttons and subcategories
 function createButton(data) {
@@ -212,6 +220,9 @@ function createStars(rating) {
 }
 //#endregion
 
+
+
+
 //#region FOOTER
 // Function to create and add the footer
 function buildFooter() {
@@ -263,35 +274,52 @@ buildFooter();
 buildHeader();
 
 //#endregion
+
+
+
+
+//#region HEADER
 function buildHeader() {
+  // create container for images/logo
   let logoDiv = document.createElement("div");
   logoDiv.classList.add("logo");
   let logoSearch = document.createElement("div");
 
+  //Logo of website - on click, back to entrypoint
   let logoHtml = `
-    <img onclick="resetView()" src="assets/Images/Header.svg" alt="logo" class="header-logo">
-  `;
+    <img onclick="resetView()" src="assets/Images/Header.svg" alt="logo" class="header-logo">`;
 
-  logoDiv.innerHTML = logoHtml;
-  headerDiv.appendChild(logoSearch);
-  logoSearch.appendChild(logoDiv);
-
+  // create search-bar
   const searchInputHTML = `
   <div class="search">
   <img src="assets/Images/icons8-search.svg" alt="search-logo" />
   <input id="searchInput" type="text"  placeholder="Search products..." />
-  </div>
-`;
+  </div>`;
 
+  // append
+  headerDiv.appendChild(logoSearch);
+  logoSearch.appendChild(logoDiv);
+  
+  logoDiv.innerHTML = logoHtml;
   logoDiv.innerHTML += searchInputHTML;
 
-  searchInput = document.getElementById("searchInput");
-  searchInput.addEventListener("keypress", function (event) {
-    if (event.key === "Enter") {
-      let searchQuery = event.target.value;
-      searchProducts(searchQuery);
-    }
-  });
+  //callback
+  searchIt()
+
+}
+//#endregion
+
+
+//#region SEARCH
+
+function searchIt() {
+searchInput = document.getElementById("searchInput");
+searchInput.addEventListener("keypress", function (event) {
+  if (event.key === "Enter") {
+    let searchQuery = event.target.value;
+    searchProducts(searchQuery);
+  }
+});
 }
 
 function resetView() {
@@ -353,9 +381,10 @@ function displayProducts(data) {
         `;
     });
 
-    // Insert products into the container
+    // append
     productsDiv.innerHTML = myHtml;
     productsContainer.appendChild(productsDiv);
     myApp.appendChild(productsContainer);
   }
 }
+//#endregion

@@ -62,7 +62,7 @@ button {
   margin-left: auto;
 }
 .headerNav .search img {
-  width: 40px;
+  width: 25px;
   height: auto;
   margin-right: 1.1rem;
 }
@@ -183,7 +183,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10rem 0;
+  padding: 10rem ;
   background-color: var(--footer-bg);
   max-width: var(--width-full);
   height: 200px;
@@ -192,16 +192,19 @@ button {
 }
 
 .lists {
+  padding: 0;
+  margin: 0;
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
 }
 .lists ul {
-  display: flex;
-  flex-direction: column;
+  display: block;
+  text-wrap: wrap;
   list-style: none;
   color: var(--black);
-  padding: 2rem;
+  width: 200px;
 }
 .lists ul li,
 .lists ul p {
