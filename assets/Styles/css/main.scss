@@ -341,7 +341,7 @@ $figcaption-BuyNowButton: #1A4D2E;
 .subcategories {
   display: none;
   position: absolute;
-  top: 100%; // Position below the button
+  top: 100%;
   left: 0;
   background-color: #fff;
   border: 1px solid $product-border;
@@ -349,10 +349,13 @@ $figcaption-BuyNowButton: #1A4D2E;
   box-shadow: 0 4px 8px $product-shadow;
   padding: 10px;
   z-index: 10;
+  white-space: nowrap; // Prevents text from wrapping
+
 
   .subcategory {
     padding: 5px 10px;
     cursor: pointer;
+    display: block;
 
     &:hover {
       background-color: #f0f0f0;

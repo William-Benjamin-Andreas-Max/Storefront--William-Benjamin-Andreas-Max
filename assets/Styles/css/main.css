@@ -264,10 +264,12 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 10px;
   z-index: 10;
+  white-space: nowrap;
 }
 .subcategories .subcategory {
   padding: 5px 10px;
   cursor: pointer;
+  display: block;
 }
 .subcategories .subcategory:hover {
   background-color: #f0f0f0;
