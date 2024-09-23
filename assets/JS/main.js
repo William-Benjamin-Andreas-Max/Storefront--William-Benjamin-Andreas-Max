@@ -4,8 +4,6 @@ if ("serviceWorker" in navigator) {
 }
 //#endregion
 
-
-
 //#region VARIABLES
 let categories = []; // Store categories
 let mainCategories = {
@@ -21,13 +19,15 @@ let headerDiv = document.createElement("header");
 myApp.appendChild(headerDiv);
 headerDiv.classList.add("headerNav");
 
+let productsHeader = document.createElement("header");
+productsHeader.classList.add("productsHeader");
 let searchInput = document.getElementById("searchInput");
 let productsDiv = document.createElement("div"); // Div for displaying products
 let productsContainer = document.createElement("div");
+
+myApp.appendChild(productsContainer);
+
 //#endregion
-
-
-
 
 //#region DATA FETCHING AND HANDLING
 getData(); // Fetch data
@@ -133,7 +133,7 @@ function getProducts(subCategories) {
         return response.json();
       })
       .then((data) => {
-        displayProducts(data);
+        displayProducts(data, subCategories);
       })
       .catch((error) => {
         console.error(error);
@@ -142,9 +142,6 @@ function getProducts(subCategories) {
   });
 }
 //#endregion
-
-
-
 
 //#region UI FUNCTIONS
 // Create category buttons and subcategories
@@ -220,9 +217,6 @@ function createStars(rating) {
 }
 //#endregion
 
-
-
-
 //#region FOOTER
 // Function to create and add the footer
 function buildFooter() {
@@ -266,17 +260,52 @@ function buildFooter() {
     `;
 
   // Append the footer to the body
-  document.body.appendChild(footer);
+  myApp.appendChild(footer);
 }
 
 // Call the function to build and add the footer to the document
-buildFooter();
 buildHeader();
+buildFeaturedCategory();
+buildFooter();
 
 //#endregion
 
+// #region buildfeaturedCategory
 
+function buildFeaturedCategory() {
+  let featuredCategory = document.createElement("section");
+  featuredCategory.innerHTML = `
+    <figure class="featuredCategory">
+      <img src="assets/Images/featuredCategory.png" alt="Featured Category" />
+      <figcaption>
+        <section>
+          <p class="new-arrival">New Arrival</p>
+          <header>
+            <hgroup>
+              <h2>Discover Our</h2>
+              <h2>New Collection</h2>
+            </hgroup>
+          </header>
+          <article>
+            <p class="featuredCategoryText">
+              where style meets sophistication. Discover the latest trends
+              crafted to perfection, blending innovation with timeless elegance
+            </p>
+          </article>
+              </section>
+    
+          <footer><button onclick="buyNowCallBack()" class="buy-now">Buy Now</button></footer>
+      </figcaption>
+    </figure>
+  `;
+  productsContainer.innerHTML = featuredCategory.innerHTML;
+}
 
+function buyNowCallBack() {
+  getProducts(["furniture"]);
+}
+
+//#endregion
 
 //#region HEADER
 function buildHeader() {
@@ -299,32 +328,32 @@ function buildHeader() {
   // append
   headerDiv.appendChild(logoSearch);
   logoSearch.appendChild(logoDiv);
-  
+
   logoDiv.innerHTML = logoHtml;
   logoDiv.innerHTML += searchInputHTML;
 
   //callback
-  searchIt()
-
+  searchIt();
 }
 //#endregion
-
 
 //#region SEARCH
 
 function searchIt() {
-searchInput = document.getElementById("searchInput");
-searchInput.addEventListener("keypress", function (event) {
-  if (event.key === "Enter") {
-    let searchQuery = event.target.value;
-    searchProducts(searchQuery);
-  }
-});
+  searchInput = document.getElementById("searchInput");
+  searchInput.addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+      let searchQuery = event.target.value;
+      searchProducts(searchQuery);
+    }
+  });
 }
 
 function resetView() {
   productsDiv.innerHTML = "";
   productsContainer.innerHTML = "";
+  productsContainer.classList.remove("products");
+  buildFeaturedCategory();
 }
 
 function searchProducts(searchQuery) {
@@ -359,9 +388,11 @@ function getSearchProducts(url) {
     });
 }
 
-function displayProducts(data) {
+function displayProducts(data, categories) {
   productsContainer.classList.add("products");
   let myHtml = "";
+
+  productsHeader.innerHTML = `<h2>${categories}</h2>`;
 
   if (Array.isArray(data.products)) {
     data.products.forEach((categoriesProducts) => {
@@ -383,8 +414,9 @@ function displayProducts(data) {
 
     // append
     productsDiv.innerHTML = myHtml;
+    productsContainer.appendChild(productsHeader);
     productsContainer.appendChild(productsDiv);
-    myApp.appendChild(productsContainer);
   }
 }
+
 //#endregion
