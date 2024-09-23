@@ -130,7 +130,7 @@ $figcaption-BuyNowButton: #1A4D2E;
         margin-top: 0.5rem;
         h2{
           margin: 0;
-          line-height: 40px;
+          line-height: 35px;
           font-size: 2rem;
         }
       }
@@ -231,6 +231,70 @@ $figcaption-BuyNowButton: #1A4D2E;
     }
   }
 }
+
+
+
+// #region viewProduct
+
+.viewProduct {
+  display: flex;
+  flex-direction: column;
+  width: 100%; 
+  max-width: 1300px;
+  height: auto; 
+  padding: 2rem; 
+
+  figure {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    height: auto;
+
+    .image-container {
+      display: flex;
+      justify-content: center;
+      align-items: center; 
+      background-color: #F3F3F3;
+      width: 100%; max-width: 675px;
+      height: 620px;
+      padding: 2rem; 
+      img {
+        max-width: 100%; 
+        height: auto; 
+      }
+    }
+  }
+
+  figcaption {
+    margin: auto;
+    max-width: 600px;
+
+    header {
+      h2 {
+        margin-bottom: 1rem;
+      }
+    }
+
+    .details {
+      margin-bottom: 1rem; 
+    }
+
+    section {
+      p {
+        margin: 0.5rem 0; 
+      }
+    }
+
+    hr {
+      margin: 1rem 0;
+    }
+  }
+}
+
+
+
+// #endregion
+
 
 // error
 

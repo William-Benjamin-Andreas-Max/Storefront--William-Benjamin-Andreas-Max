@@ -25,6 +25,8 @@ let searchInput = document.getElementById("searchInput");
 let productsDiv = document.createElement("div"); // Div for displaying products
 let productsContainer = document.createElement("div");
 
+let fetchedProducts = []; // Store fetched products
+
 myApp.appendChild(productsContainer);
 
 //#endregion
@@ -32,19 +34,16 @@ myApp.appendChild(productsContainer);
 //#region DATA FETCHING AND HANDLING
 getData(); // Fetch data
 
-// Fetch data from the new category list API
 function getData() {
   fetch("https://dummyjson.com/products/category-list")
     .then((response) => {
       if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
-      console.log(response);
       return response.json();
     })
     .then((data) => {
       if (Array.isArray(data)) {
-        console.log("Fetched data:", data); // Log fetched data
         categories = data;
-        sortCategories(data); // Sort categories
+        sortCategories(data);
       }
     })
     .catch((error) => {
@@ -53,9 +52,9 @@ function getData() {
     });
 }
 
-// Sort categories into main and subcategories
 function sortCategories(data) {
   data.forEach((category) => {
+    // Sort into main categories
     switch (category) {
       case "beauty":
       case "fragrances":
@@ -100,28 +99,20 @@ function sortCategories(data) {
   createButton(mainCategories);
 }
 
-// Build error message
 function buildError(error) {
-  myApp.innerHTML = "";
-
-  myHtml = `
+  myApp.innerHTML = `
     <div class="error-container">
       <h1>Error loading data</h1>
-      <p>Please try again.</p>
-      <p>${error}</p>
+      <p>Please try again later.</p>
+      <p>${error.message}</p>
     </div>
-   `;
-
-  myApp.innerHTML = myHtml;
+  `;
 }
 
-// Display products from category
 function getProducts(subCategories) {
   productsDiv.innerHTML = "";
   productsContainer.innerHTML = "";
   productsContainer.classList.add("products");
-
-  console.log(subCategories);
 
   subCategories.forEach((subCategory) => {
     let url = `https://dummyjson.com/products/category/${subCategory}`;
@@ -133,6 +124,7 @@ function getProducts(subCategories) {
         return response.json();
       })
       .then((data) => {
+        fetchedProducts = data.products; // Store fetched products globally
         displayProducts(data, subCategories);
       })
       .catch((error) => {
@@ -141,10 +133,10 @@ function getProducts(subCategories) {
       });
   });
 }
+
 //#endregion
 
 //#region UI FUNCTIONS
-// Create category buttons and subcategories
 function createButton(data) {
   let buttonDiv = document.createElement("section");
   buttonDiv.classList.add("category");
@@ -170,14 +162,12 @@ function createButton(data) {
   buttonDiv.innerHTML = myHtml;
   headerDiv.prepend(buttonDiv);
 
-  // Add event listeners for hover effects
   document.querySelectorAll(".category-wrapper").forEach((wrapper) => {
     wrapper.addEventListener("mouseover", () => showSubCategories(wrapper));
     wrapper.addEventListener("mouseout", () => hideSubCategories(wrapper));
   });
 }
 
-// Show subcategories on hover
 function showSubCategories(wrapper) {
   let subCategoriesDiv = wrapper.querySelector(".subcategories");
   if (subCategoriesDiv) {
@@ -185,7 +175,6 @@ function showSubCategories(wrapper) {
   }
 }
 
-// Hide subcategories when not hovering
 function hideSubCategories(wrapper) {
   let subCategoriesDiv = wrapper.querySelector(".subcategories");
   if (subCategoriesDiv) {
@@ -193,43 +182,32 @@ function hideSubCategories(wrapper) {
   }
 }
 
-// Handle subcategory click
 function handleSubcategoryClick(subCategory) {
-  console.log(subCategory);
-
   getProducts([subCategory]);
 }
 
-// Create stars based on product rating
 function createStars(rating) {
   let stars = "";
-  rating = Math.round(rating); // Round rating to the nearest integer
-
-  // Loop to create a 5-star system
+  rating = Math.round(rating);
   for (let i = 0; i < 5; i++) {
-    if (i < rating) {
-      stars += `<img class="star" src="assets/Images/Filled star.svg" alt="Filled star">`; // Filled star
-    } else {
-      stars += `<img class="star" src="assets/Images/Empty star.svg" alt="Empty star">`; // Empty star
-    }
+    stars += `<img class="star" src="assets/Images/${
+      i < rating ? "Filled" : "Empty"
+    } star.svg" alt="${i < rating ? "Filled" : "Empty"} star">`;
   }
   return stars;
 }
 //#endregion
 
 //#region FOOTER
-// Function to create and add the footer
 function buildFooter() {
-  // Create the footer element
   let footer = document.createElement("footer");
   footer.className = "footerMain";
 
-  // Set the innerHTML of the footer
   footer.innerHTML = `
       <div class="lists">
         <ul>
           <h3>Company</h3>
-          <p>Infenite Finds Emv</p>
+          <p>Infinite Finds Emv</p>
           <p>CVR-NB-44215799</p>
         </ul>
         <ul>
@@ -242,7 +220,7 @@ function buildFooter() {
           <li><a href="#">Terms and Conditions</a></li>
           <li><a href="#">Privacy</a></li>
           <li><a href="#">Withdrawal</a></li>
-          <li><a href="#">Cookie's</a></li>
+          <li><a href="#">Cookies</a></li>
         </ul>
         <ul>
           <h3>Contact Info</h3>
@@ -252,26 +230,23 @@ function buildFooter() {
       <div class="ratings">
         <ul>
           <li><img src="assets/Images/Link [footer__ben-item1].svg" alt=""></li>
-          <li>    <img src="assets/Images/Link [footer__ben-item].svg" alt=""></li>
+          <li><img src="assets/Images/Link [footer__ben-item].svg" alt=""></li>
           <li><img src="assets/Images/Link [is-br-12--is-m-br-10--slide-in1].svg" alt=""></li>
         </ul>
-            </div>
+      </div>
       </div>
     `;
 
-  // Append the footer to the body
   myApp.appendChild(footer);
 }
 
-// Call the function to build and add the footer to the document
 buildHeader();
 buildFeaturedCategory();
 buildFooter();
 
 //#endregion
 
-// #region buildfeaturedCategory
-
+//#region buildFeaturedCategory
 function buildFeaturedCategory() {
   let featuredCategory = document.createElement("section");
   featuredCategory.innerHTML = `
@@ -292,9 +267,8 @@ function buildFeaturedCategory() {
               crafted to perfection, blending innovation with timeless elegance
             </p>
           </article>
-              </section>
-    
-          <footer><button onclick="buyNowCallBack()" class="buy-now">Buy Now</button></footer>
+        </section>
+        <footer><button onclick="buyNowCallBack()" class="buy-now">Buy Now</button></footer>
       </figcaption>
     </figure>
   `;
@@ -304,41 +278,32 @@ function buildFeaturedCategory() {
 function buyNowCallBack() {
   getProducts(["furniture"]);
 }
-
 //#endregion
 
 //#region HEADER
 function buildHeader() {
-  // create container for images/logo
   let logoDiv = document.createElement("div");
   logoDiv.classList.add("logo");
   let logoSearch = document.createElement("div");
 
-  //Logo of website - on click, back to entrypoint
   let logoHtml = `
     <img onclick="resetView()" src="assets/Images/Header.svg" alt="logo" class="header-logo">`;
 
-  // create search-bar
   const searchInputHTML = `
   <div class="search">
   <img src="assets/Images/icons8-search.svg" alt="search-logo" />
   <input id="searchInput" type="text"  placeholder="Search products..." />
   </div>`;
 
-  // append
   headerDiv.appendChild(logoSearch);
   logoSearch.appendChild(logoDiv);
+  logoDiv.innerHTML = logoHtml + searchInputHTML;
 
-  logoDiv.innerHTML = logoHtml;
-  logoDiv.innerHTML += searchInputHTML;
-
-  //callback
   searchIt();
 }
 //#endregion
 
 //#region SEARCH
-
 function searchIt() {
   searchInput = document.getElementById("searchInput");
   searchInput.addEventListener("keypress", function (event) {
@@ -360,27 +325,10 @@ function searchProducts(searchQuery) {
   fetch(`https://dummyjson.com/products/search?q=${searchQuery}`)
     .then((response) => {
       if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
-      return response;
+      return response.json(); // Return the response as JSON
     })
     .then((data) => {
-      console.log(data);
-      getSearchProducts(data.url);
-    })
-    .catch((error) => {
-      console.error(error);
-      buildError(error);
-    });
-}
-
-function getSearchProducts(url) {
-  fetch(url)
-    .then((response) => {
-      if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
-      return response.json();
-    })
-    .then((data) => {
-      console.log(data.products);
-      displayProducts(data);
+      displayProducts(data, []); // Pass empty array for categories
     })
     .catch((error) => {
       console.error(error);
@@ -392,12 +340,14 @@ function displayProducts(data, categories) {
   productsContainer.classList.add("products");
   let myHtml = "";
 
-  productsHeader.innerHTML = `<h2>${categories}</h2>`;
+  productsHeader.innerHTML = `<h2>${
+    categories.length > 0 ? categories : "Search Results"
+  }</h2>`;
 
   if (Array.isArray(data.products)) {
-    data.products.forEach((categoriesProducts) => {
+    data.products.forEach((categoriesProducts, index) => {
       myHtml += `
-          <figure>
+    <figure onclick="viewProduct(${index})">
             <img src="${categoriesProducts.thumbnail}" alt="${
         categoriesProducts.title
       }">
@@ -412,11 +362,48 @@ function displayProducts(data, categories) {
         `;
     });
 
-    // append
     productsDiv.innerHTML = myHtml;
     productsContainer.appendChild(productsHeader);
     productsContainer.appendChild(productsDiv);
   }
 }
 
+//#endregion
+
+//#region viewProduct
+function viewProduct(index) {
+  const product = fetchedProducts[index]; // Use the globally stored products
+  buildViewProduct(product);
+}
+
+function buildViewProduct(product) {
+  productsContainer.innerHTML = "";
+  productsContainer.classList.remove("products");
+
+  let productDetailsHtml = `
+    <section class="viewProduct">
+      <figure>
+        <div class="image-container">
+          <img src="${product.thumbnail}" alt="${product.title}" />
+        </div>
+        <figcaption>
+          <header><h2>${product.title}</h2></header>
+          <div class="details">
+            <div class="rating">${createStars(product.rating)}</div>
+          </div>
+          <section>
+            <p>$${product.price}</p>
+            <article>
+              <p>${product.description}</p>
+            </article>
+            <hr />
+          </section>
+        </figcaption>
+      </figure>
+    </section>
+  `;
+
+  // console.log(fetchedProducts);
+  productsContainer.innerHTML = productDetailsHtml;
+}
 //#endregion
