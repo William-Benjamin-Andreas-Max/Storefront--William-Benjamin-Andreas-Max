@@ -436,7 +436,7 @@ function buildViewProduct(product) {
 
 //#region basketData
 
-<<<<<<< Updated upstream
+
 function buyNowCallBack(myProductId) {
   let itemFound = false;
 
@@ -470,9 +470,13 @@ function readData() {
   }
 }
 
-//#endregion
 getBasketTotal();
-=======
+
+const modal = document.createElement('div')
+modal.id = 'modal'
+modal.classList = 'hidden'
+
+
 const overlay = document.createElement('div')
 overlay.classList = 'overlay'
 
@@ -494,4 +498,4 @@ const closeModal = function () {
 productsContainer.appendChild(modal)
 
 //#endregion
->>>>>>> Stashed changes
+
