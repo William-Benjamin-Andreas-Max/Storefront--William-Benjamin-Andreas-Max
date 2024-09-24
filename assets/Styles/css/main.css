@@ -14,7 +14,7 @@ body {
 
 .headerNav {
   display: grid;
-  grid-template-columns: 0.85fr 1fr;
+  grid-template-columns: 0.82fr 1fr;
   align-items: center;
 }
 .headerNav .logo {
@@ -23,7 +23,7 @@ body {
   justify-content: flex-end;
 }
 .headerNav .logo > img {
-  width: 120px;
+  width: 160px;
   height: auto;
   padding: 1rem;
 }
@@ -31,9 +31,8 @@ body {
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  background-color: #f9f9f9;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 4px;
+  border-bottom: 1px solid #777;
+  border-radius: 4px 4px 0 0;
   padding: 8px;
   width: 300px;
   height: 40px;
@@ -45,6 +44,7 @@ body {
   width: 40px;
   height: auto;
   margin-right: 1.1rem;
+  padding: 0.2rem;
 }
 .headerNav .search input {
   border: none;
@@ -72,7 +72,7 @@ body {
 }
 .cart-container p {
   position: absolute;
-  top: 10px;
+  top: 25px;
   right: -10px;
   background-color: #1A4D2E;
   color: #fff;

@@ -470,5 +470,4 @@ function readData() {
 }
 
 //#endregion
-
 getBasketTotal();
