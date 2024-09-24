@@ -408,7 +408,7 @@ $figcaption-BuyNowButton: #1A4D2E;
 
 // #region FOOTER
 .footerMain {
-  display: flex;
+  // display: flex;
   justify-content: center;
   align-items: center;
   padding: 10rem 0;
@@ -468,6 +468,35 @@ $figcaption-BuyNowButton: #1A4D2E;
   }
 }
 // #endregion
+
+
+
+/* #region MODAL */
+
+#modal {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 400px;
+  background-color: rgb(159, 36, 36);
+  border-left: black solid 1px;
+  z-index: 1000;
+}
+.hidden {
+  display: none;
+}
+
+
+.overlay{
+  z-index: 0;
+  background-color: #777;
+}
+
+/* #endregion */
+
+
+
+
 
 @media (max-width: 1000px) {
   .footerMain {

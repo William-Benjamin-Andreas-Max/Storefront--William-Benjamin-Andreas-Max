@@ -117,6 +117,7 @@ function getProducts(subCategories) {
   productsDiv.innerHTML = "";
   productsContainer.innerHTML = "";
   productsContainer.classList.add("products");
+  getModel();
   fetchedProducts = []; // Resetting for each category fetch
 
   subCategories.forEach((subCategory) => {
@@ -302,7 +303,7 @@ function buildHeader() {
   </div>`;
 
   const cart = `
-   <div class="cart-container">
+   <div id="basketCart" class="cart-container">
    <img src="assets/Images/Cart.svg" alt="Cart" />
    <p id="basket-total">${basketTotal}</p>
  </div>
@@ -442,7 +443,6 @@ function buildViewProduct(product) {
 
 //#region basketData
 
-
 function buyNowCallBack(myProductId) {
   let itemFound = false;
 
@@ -478,30 +478,27 @@ function readData() {
 
 getBasketTotal();
 
-const modal = document.createElement('div')
-modal.id = 'modal'
-modal.classList = 'hidden'
+const modal = document.createElement("div");
+modal.id = "modal";
+modal.classList.add("hidden");
 
+const overlay = document.createElement("div");
+overlay.classList = "overlay";
 
-const overlay = document.createElement('div')
-overlay.classList = 'overlay'
-
-const closeBtnModal = document.createElement('button')
-closeBtnModal.id = 'closeBtnModal'
-
-
+const closeBtnModal = document.createElement("button");
+closeBtnModal.id = "closeBtnModal";
 
 // open basket
-const openModal = function () {
-  modal.classList.remove('hidden')
-}
-// close basket
-const closeModal = function () {
-  modal.classList.add('hidden')
-  overlay.classList.add('hidden')
-}
 // append
-productsContainer.appendChild(modal)
+
+let basketCart = document.getElementById("basketCart");
+
+basketCart.addEventListener("click", (e) => {
+  modal.classList.toggle("hidden");
+});
+
+function getModel() {
+  productsContainer.appendChild(modal);
+}
 
 //#endregion
-
