@@ -31,7 +31,7 @@ body {
 
 .headerNav {
   display: grid;
-  grid-template-columns: .90fr 1fr;
+  grid-template-columns: .85fr 1fr;
   align-items: center;
 
   .logo {
@@ -77,6 +77,27 @@ body {
         color: #aaa;
       }
     }
+  }
+}
+
+
+.cart-container{
+  display: flex;
+  position: relative;
+  margin: 0 5rem;
+  img{
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  p{
+    position:absolute;
+    top: 10px;
+    right: -10px;
+    background-color: #1A4D2E;
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 50%;
   }
 }
 
@@ -153,6 +174,9 @@ $figcaption-BuyNowButton: #1A4D2E;
     }
   }
 }
+
+
+
 
 
 
@@ -291,13 +315,25 @@ $figcaption-BuyNowButton: #1A4D2E;
   }
 }
 
+.Buy-Now-container{
+  button{
+    background-color: $figcaption-BuyNowButton;
+    color: #fff;
+    padding: 1rem 3rem;
+    border: none;
+    border-radius: 4px;
+    &:hover{
+      cursor: pointer;
+    }
+  }
+}
+
 
 
 // #endregion
 
 
 // error
-
 .error-container {
   position: fixed;
   display: flex;

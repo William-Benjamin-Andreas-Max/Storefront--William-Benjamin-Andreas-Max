@@ -6,6 +6,10 @@ if ("serviceWorker" in navigator) {
 
 //#region VARIABLES
 let categories = []; // Store categories
+let basketData = []; // Store basket data
+let basketTotal = 0; // Store basket total
+readData();
+console.log(basketData);
 let mainCategories = {
   Beauty: [],
   Fashion: [],
@@ -268,14 +272,14 @@ function buildFeaturedCategory() {
             </p>
           </article>
         </section>
-        <footer><button onclick="buyNowCallBack()" class="buy-now">Buy Now</button></footer>
+        <footer><button onclick="FeaturedCategoryCallBack()" class="buy-now">Buy Now</button></footer>
       </figcaption>
     </figure>
   `;
   productsContainer.innerHTML = featuredCategory.innerHTML;
 }
 
-function buyNowCallBack() {
+function FeaturedCategoryCallBack() {
   getProducts(["furniture"]);
 }
 //#endregion
@@ -283,6 +287,7 @@ function buyNowCallBack() {
 //#region HEADER
 function buildHeader() {
   let logoDiv = document.createElement("div");
+  logoDiv.id = "logoDiv";
   logoDiv.classList.add("logo");
   let logoSearch = document.createElement("div");
 
@@ -291,17 +296,34 @@ function buildHeader() {
 
   const searchInputHTML = `
   <div class="search">
-  <img src="assets/Images/icons8-search.svg" alt="search-logo" />
+  <img src="assets/Images/searchIcon.svg" alt="search-logo" />
   <input id="searchInput" type="text"  placeholder="Search products..." />
   </div>`;
 
+  const cart = `
+   <div class="cart-container">
+   <img src="assets/Images/Cart.svg" alt="Cart" />
+   <p id="basket-total">${basketTotal}</p>
+ </div>
+`;
+
   headerDiv.appendChild(logoSearch);
   logoSearch.appendChild(logoDiv);
-  logoDiv.innerHTML = logoHtml + searchInputHTML;
-
+  logoDiv.innerHTML = logoHtml + searchInputHTML + cart;
   searchIt();
 }
 //#endregion
+
+function getBasketTotal() {
+  basketTotal = 0;
+  basketData.forEach((myProduct) => {
+    basketTotal += myProduct.amount;
+  });
+
+  document.getElementById("basket-total").textContent = basketTotal;
+
+  console.log("Basket total:", basketTotal);
+}
 
 //#region SEARCH
 function searchIt() {
@@ -328,7 +350,7 @@ function searchProducts(searchQuery) {
       return response.json(); // Return the response as JSON
     })
     .then((data) => {
-      displayProducts(data, []); // Pass empty array for categories
+      displayProducts(data, []);
     })
     .catch((error) => {
       console.error(error);
@@ -338,6 +360,7 @@ function searchProducts(searchQuery) {
 
 function displayProducts(data, categories) {
   productsContainer.classList.add("products");
+  productsContainer.innerHTML = "";
   let myHtml = "";
 
   productsHeader.innerHTML = `<h2>${
@@ -372,7 +395,7 @@ function displayProducts(data, categories) {
 
 //#region viewProduct
 function viewProduct(index) {
-  const product = fetchedProducts[index]; // Use the globally stored products
+  const product = fetchedProducts[index];
   buildViewProduct(product);
 }
 
@@ -397,6 +420,9 @@ function buildViewProduct(product) {
               <p>${product.description}</p>
             </article>
             <hr />
+            <div class="Buy-Now-container"><button onclick="buyNowCallBack(${
+              product.id
+            })">Buy Now</button></div>
           </section>
         </figcaption>
       </figure>
@@ -407,3 +433,42 @@ function buildViewProduct(product) {
   productsContainer.innerHTML = productDetailsHtml;
 }
 //#endregion
+
+//#region basketData
+
+function buyNowCallBack(myProductId) {
+  let itemFound = false;
+
+  basketData.forEach((item) => {
+    if (item.id === myProductId) {
+      item.amount += 1;
+      itemFound = true;
+    }
+  });
+
+  if (!itemFound) {
+    basketData.push({ id: myProductId, amount: 1 });
+  }
+
+  saveData();
+  getBasketTotal();
+  console.log("callBack complete");
+}
+
+function saveData() {
+  let mySerializedData = JSON.stringify(basketData);
+  localStorage.setItem("basketCase", mySerializedData);
+}
+
+function readData() {
+  let myBasketString = localStorage.getItem("basketCase");
+  if (myBasketString) {
+    basketData = JSON.parse(myBasketString);
+  } else {
+    basketData = [];
+  }
+}
+
+//#endregion
+
+getBasketTotal();
