@@ -436,6 +436,7 @@ function buildViewProduct(product) {
 
 //#region basketData
 
+<<<<<<< Updated upstream
 function buyNowCallBack(myProductId) {
   let itemFound = false;
 
@@ -471,3 +472,26 @@ function readData() {
 
 //#endregion
 getBasketTotal();
+=======
+const overlay = document.createElement('div')
+overlay.classList = 'overlay'
+
+const closeBtnModal = document.createElement('button')
+closeBtnModal.id = 'closeBtnModal'
+
+
+
+// open basket
+const openModal = function () {
+  modal.classList.remove('hidden')
+}
+// close basket
+const closeModal = function () {
+  modal.classList.add('hidden')
+  overlay.classList.add('hidden')
+}
+// append
+productsContainer.appendChild(modal)
+
+//#endregion
+>>>>>>> Stashed changes
