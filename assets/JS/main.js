@@ -407,3 +407,17 @@ function buildViewProduct(product) {
   productsContainer.innerHTML = productDetailsHtml;
 }
 //#endregion
+
+//#region MODAL 
+const modal = document.createElement('div')
+modal.id = 'modal'
+modal.classList = 'hidden'
+
+const openModal = function () {
+  modal.classList.remove('hidden')
+}
+
+const closeModal = function () {
+  modal.classList.add('hidden')
+}
+//#endregion
