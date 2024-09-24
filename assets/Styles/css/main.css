@@ -311,7 +311,7 @@ body {
 }
 
 .footerMain {
-  display: flex;
+  /* display: flex; */
   justify-content: center;
   align-items: center;
   padding: 10rem 0;
@@ -381,3 +381,17 @@ body {
     margin-top: 10rem;
   }
 }/*# sourceMappingURL=main.css.map */
+
+
+/* #region MODAL */
+
+#modal{
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 400px;
+  background-color: rgb(159, 36, 36);
+  border-left: black solid 1px;
+}
+
+/* #endregion */

@@ -442,6 +442,7 @@ function buildViewProduct(product) {
 
 //#region basketData
 
+
 function buyNowCallBack(myProductId) {
   let itemFound = false;
 
@@ -475,5 +476,32 @@ function readData() {
   }
 }
 
-//#endregion
 getBasketTotal();
+
+const modal = document.createElement('div')
+modal.id = 'modal'
+modal.classList = 'hidden'
+
+
+const overlay = document.createElement('div')
+overlay.classList = 'overlay'
+
+const closeBtnModal = document.createElement('button')
+closeBtnModal.id = 'closeBtnModal'
+
+
+
+// open basket
+const openModal = function () {
+  modal.classList.remove('hidden')
+}
+// close basket
+const closeModal = function () {
+  modal.classList.add('hidden')
+  overlay.classList.add('hidden')
+}
+// append
+productsContainer.appendChild(modal)
+
+//#endregion
+
