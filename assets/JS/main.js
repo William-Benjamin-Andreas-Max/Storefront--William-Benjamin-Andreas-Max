@@ -117,6 +117,7 @@ function getProducts(subCategories) {
   productsDiv.innerHTML = "";
   productsContainer.innerHTML = "";
   productsContainer.classList.add("products");
+  fetchedProducts = []; // Resetting for each category fetch
 
   subCategories.forEach((subCategory) => {
     let url = `https://dummyjson.com/products/category/${subCategory}`;
@@ -350,7 +351,9 @@ function searchProducts(searchQuery) {
       return response.json(); // Return the response as JSON
     })
     .then((data) => {
+      fetchedProducts = data.products;
       displayProducts(data, []);
+      console.log(data);
     })
     .catch((error) => {
       console.error(error);
@@ -362,6 +365,7 @@ function displayProducts(data, categories) {
   productsContainer.classList.add("products");
   productsContainer.innerHTML = "";
   let myHtml = "";
+  console.log(fetchedProducts);
 
   productsHeader.innerHTML = `<h2>${
     categories.length > 0 ? categories : "Search Results"
@@ -400,6 +404,8 @@ function viewProduct(index) {
 }
 
 function buildViewProduct(product) {
+  console.log(product);
+
   productsContainer.innerHTML = "";
   productsContainer.classList.remove("products");
 
