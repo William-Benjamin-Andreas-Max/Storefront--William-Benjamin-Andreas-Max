@@ -501,7 +501,7 @@ basketCart.addEventListener("click", (e) => {
 // create modal
 function getModel() {
   let myHtml = `<div id="modal" class="modal hidden" onclick="toggleModal()">    
-  <aside>
+  <aside onclick="event.stopPropagation()" >
       <div class="modelClose">
         <span>close</span>
       </div>
