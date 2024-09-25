@@ -472,18 +472,28 @@ $figcaption-BuyNowButton: #1A4D2E;
 
 
 /* #region MODAL */
+.productsContainer{
+  position: relative;
+}
 
 #modal {
   position: absolute;
-  right: 0;
+  display: flex;
+  justify-content: flex-end;
+  top: 0;
+  background-color: #1A4D2E;
   height: 100%;
-  width: 400px;
-  background-color: rgb(159, 36, 36);
+  width: 100%;
   border-left: black solid 1px;
   z-index: 1000;
+  div{
+    width: 300px;
+    height: 100%;
+    background-color: #514343;
+  }
 }
-.hidden {
-  display: none;
+.hidden{
+  display: none ;
 }
 
 

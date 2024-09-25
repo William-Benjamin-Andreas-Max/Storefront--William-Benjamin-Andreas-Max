@@ -9,6 +9,7 @@ let categories = []; // Store categories
 let basketData = []; // Store basket data
 let basketTotal = 0; // Store basket total
 readData();
+
 console.log(basketData);
 let mainCategories = {
   Beauty: [],
@@ -28,6 +29,7 @@ productsHeader.classList.add("productsHeader");
 let searchInput = document.getElementById("searchInput");
 let productsDiv = document.createElement("div"); // Div for displaying products
 let productsContainer = document.createElement("div");
+productsContainer.classList.add("productsContainer");
 
 let fetchedProducts = []; // Store fetched products
 
@@ -117,7 +119,6 @@ function getProducts(subCategories) {
   productsDiv.innerHTML = "";
   productsContainer.innerHTML = "";
   productsContainer.classList.add("products");
-  getModel();
   fetchedProducts = []; // Resetting for each category fetch
 
   subCategories.forEach((subCategory) => {
@@ -343,6 +344,7 @@ function resetView() {
   productsContainer.innerHTML = "";
   productsContainer.classList.remove("products");
   buildFeaturedCategory();
+  getModel();
 }
 
 function searchProducts(searchQuery) {
@@ -393,6 +395,7 @@ function displayProducts(data, categories) {
     productsDiv.innerHTML = myHtml;
     productsContainer.appendChild(productsHeader);
     productsContainer.appendChild(productsDiv);
+    getModel();
   }
 }
 
@@ -402,6 +405,7 @@ function displayProducts(data, categories) {
 function viewProduct(index) {
   const product = fetchedProducts[index];
   buildViewProduct(product);
+  getModel();
 }
 
 function buildViewProduct(product) {
@@ -478,10 +482,6 @@ function readData() {
 
 getBasketTotal();
 
-const modal = document.createElement("div");
-modal.id = "modal";
-modal.classList.add("hidden");
-
 const overlay = document.createElement("div");
 overlay.classList = "overlay";
 
@@ -492,13 +492,21 @@ closeBtnModal.id = "closeBtnModal";
 // append
 
 let basketCart = document.getElementById("basketCart");
-
 basketCart.addEventListener("click", (e) => {
-  modal.classList.toggle("hidden");
+  toggleModal();
+  console.log("basket clicket");
 });
+const modal = document.getElementById("modal");
 
 function getModel() {
-  productsContainer.appendChild(modal);
+  let myHtml = `<div id="modal" class="modal hidden"><div><h1>dawdwadwdw</h1></div></div>`;
+  productsContainer.innerHTML += myHtml;
 }
+function toggleModal() {
+  const modal = document.getElementById("modal");
+  modal.classList.toggle("hidden");
+}
+
+getModel();
 
 //#endregion
