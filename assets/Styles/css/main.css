@@ -64,6 +64,7 @@ body {
   display: flex;
   position: relative;
   margin: 0 5rem;
+  cursor: pointer;
 }
 .cart-container img {
   width: 100%;
@@ -77,7 +78,7 @@ body {
   background-color: #1A4D2E;
   color: #fff;
   padding: 4px 10px;
-  border-radius: 50%;
+  border-radius: 100%;
 }
 
 .featuredCategory {
@@ -392,6 +393,7 @@ body {
 .modal aside .modelClose {
   display: flex;
   justify-content: flex-end;
+  cursor: pointer;
 }
 .modal aside .modelClose img {
   width: 25px;
@@ -437,6 +439,10 @@ body {
 
 .hidden {
   display: none;
+}
+
+.trash {
+  cursor: pointer;
 }
 
 .overlay {

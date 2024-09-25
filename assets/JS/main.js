@@ -575,7 +575,7 @@ function displayCartItems() {
                 </div>
                 <section>
                   <span class="remove-product" data-id="${item.id}">
-                    <img src="assets/Images/Trash.svg" alt="Trash" />
+                    <img class="trash" src="assets/Images/Trash.svg" alt="Trash" />
                   </span>
                   <div class="plus-minusAmount">
                     <button onclick="decreaseAmount(${item.id})">
