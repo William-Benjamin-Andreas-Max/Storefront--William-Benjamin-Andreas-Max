@@ -476,17 +476,17 @@ $figcaption-BuyNowButton: #1A4D2E;
   position: relative;
 }
 
-#modal {
+.modal {
   position: absolute;
   display: flex;
   justify-content: flex-end;
   top: 0;
-  background-color: #1A4D2E;
+  background-color: #00000088;
   height: 100%;
   width: 100%;
   border-left: black solid 1px;
   z-index: 1000;
-  div{
+  aside{
     width: 300px;
     height: 100%;
     background-color: #514343;

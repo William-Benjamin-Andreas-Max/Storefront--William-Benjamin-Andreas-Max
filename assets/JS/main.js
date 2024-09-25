@@ -325,6 +325,12 @@ function getBasketTotal() {
 
   document.getElementById("basket-total").textContent = basketTotal;
 
+  let basketCartTotal = document.getElementById("basketCartTotal");
+
+  if (basketCartTotal) {
+    basketCartTotal.textContent = `Subtotal (${basketTotal})`;
+  }
+
   console.log("Basket total:", basketTotal);
 }
 
@@ -493,13 +499,32 @@ closeBtnModal.id = "closeBtnModal";
 
 let basketCart = document.getElementById("basketCart");
 basketCart.addEventListener("click", (e) => {
+  getBasketTotal();
+  console.log(basketTotal);
+
   toggleModal();
   console.log("basket clicket");
 });
 const modal = document.getElementById("modal");
 
 function getModel() {
-  let myHtml = `<div id="modal" class="modal hidden"><div><h1>dawdwadwdw</h1></div></div>`;
+  let myHtml = `<div id="modal" class="modal hidden">    
+  <aside>
+      <div class="modelClose">
+        <span>close</span>
+      </div>
+      <section class="yourCart">
+        <h3>Your Cart</h3>
+      </section>
+      <footer>
+        <hgroup>
+          <h4 id="basketCartTotal">Subtotal (${basketTotal})</h4>
+          <h4>$</h4>
+        </hgroup>
+        <button>CONTINUE TO CHECKOUT</button>
+        <p>Psst, get it now before it sells out.</p>
+      </footer>
+    </aside></div>`;
   productsContainer.innerHTML += myHtml;
 }
 function toggleModal() {
