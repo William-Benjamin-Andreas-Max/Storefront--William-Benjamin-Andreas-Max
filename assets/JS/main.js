@@ -140,7 +140,6 @@ function getProducts(subCategories) {
 }
 
 //#endregion
-
 //#region UI FUNCTIONS
 function createButton(data) {
   let buttonDiv = document.createElement("section");
