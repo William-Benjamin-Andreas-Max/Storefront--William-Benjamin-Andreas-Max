@@ -444,6 +444,8 @@ function buildViewProduct(product) {
   productsContainer.innerHTML = productDetailsHtml;
 }
 //#endregion
+
+
 //#region basketData
 
 function buyNowCallBack(myProductId) {
@@ -481,27 +483,25 @@ function readData() {
 
 getBasketTotal();
 
+//================================================
+
+// background blur/filter 
 const overlay = document.createElement("div");
 overlay.classList = "overlay";
 
-const closeBtnModal = document.createElement("button");
-closeBtnModal.id = "closeBtnModal";
-
-// open basket
-// append
-
+// listen for click
 let basketCart = document.getElementById("basketCart");
 basketCart.addEventListener("click", (e) => {
   getBasketTotal();
-  console.log(basketTotal);
+  // console.log(basketTotal);
 
   toggleModal();
-  console.log("basket clicket");
+  // console.log("basket clicket");
 });
-const modal = document.getElementById("modal");
 
+// create modal
 function getModel() {
-  let myHtml = `<div id="modal" class="modal hidden">    
+  let myHtml = `<div id="modal" class="modal hidden" onclick="toggleModal()">    
   <aside>
       <div class="modelClose">
         <span>close</span>
@@ -518,13 +518,18 @@ function getModel() {
         <p>Psst, get it now before it sells out.</p>
       </footer>
     </aside></div>`;
+
+  // append  
   productsContainer.innerHTML += myHtml;
 }
+
+// toggle modal
 function toggleModal() {
   const modal = document.getElementById("modal");
   modal.classList.toggle("hidden");
 }
 
+// Callback
 getModel();
 
 //#endregion
