@@ -64,6 +64,7 @@ body {
   display: flex;
   position: relative;
   margin: 0 5rem;
+  text-align: center;
 }
 .cart-container img {
   width: 100%;
@@ -72,12 +73,15 @@ body {
 }
 .cart-container p {
   position: absolute;
-  top: 25px;
-  right: -10px;
+  padding-top: 2.5px;
+  font-size: 10px;
+  height: 20px;
+  width: 20px;
   background-color: #1A4D2E;
   color: #fff;
-  padding: 4px 10px;
-  border-radius: 50%;
+  border-radius: 100%;
+  right: -3px;
+  top: 2.2rem;
 }
 
 .featuredCategory {
