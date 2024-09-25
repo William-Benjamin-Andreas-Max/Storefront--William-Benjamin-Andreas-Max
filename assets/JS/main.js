@@ -503,7 +503,7 @@ function getModel() {
   let myHtml = `<div id="modal" class="modal hidden">    
   <aside>
       <div class="modelClose">
-        <span>close</span>
+      <span id="modelClose">x</span>
       </div>
       <section class="yourCart">
         <h3>Your Cart</h3>
@@ -526,4 +526,9 @@ function toggleModal() {
 
 getModel();
 
+let modelCloseButton = document.getElementById("modelClose")
+
+modelCloseButton.addEventListener("click", (e) => {
+  toggleModal();
+})
 //#endregion
