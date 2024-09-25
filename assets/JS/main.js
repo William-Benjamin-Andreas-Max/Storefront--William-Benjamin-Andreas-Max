@@ -7,7 +7,8 @@ if ("serviceWorker" in navigator) {
 //#region VARIABLES
 let categories = []; // Store categories
 let basketData = []; // Store basket data
-let basketTotal = 0; // Store basket total
+let basketTotalAmount = 0; // Store basket total
+let basketTotalPrice = 0; // Store basket price
 readData();
 
 console.log(basketData);
@@ -306,7 +307,7 @@ function buildHeader() {
   const cart = `
    <div id="basketCart" class="cart-container">
    <img src="assets/Images/Cart.svg" alt="Cart" />
-   <p id="basket-total">${basketTotal}</p>
+   <p id="basket-total">${basketTotalAmount}</p>
  </div>
 `;
 
@@ -318,20 +319,29 @@ function buildHeader() {
 //#endregion
 
 function getBasketTotal() {
-  basketTotal = 0;
+  basketTotalAmount = 0;
+  basketTotalPrice = 0;
+
   basketData.forEach((myProduct) => {
-    basketTotal += myProduct.amount;
+    basketTotalAmount += myProduct.amount;
+    basketTotalPrice += myProduct.amount * myProduct.Price;
+    console.log(myProduct.Price);
   });
 
-  document.getElementById("basket-total").textContent = basketTotal;
+  document.getElementById("basket-total").textContent = basketTotalAmount;
 
   let basketCartTotal = document.getElementById("basketCartTotal");
 
   if (basketCartTotal) {
-    basketCartTotal.textContent = `Subtotal (${basketTotal})`;
+    basketCartTotal.textContent = `Subtotal (${basketTotalAmount})`;
   }
 
-  console.log("Basket total:", basketTotal);
+  let basketCartPrice = document.getElementById("basketCartTotalPrice");
+  if (basketCartPrice) {
+    basketCartPrice.textContent = `$${basketTotalPrice}`;
+  }
+
+  console.log("Basket total:", basketTotalAmount);
 }
 
 //#region SEARCH
@@ -437,9 +447,11 @@ function buildViewProduct(product) {
               <p>${product.description}</p>
             </article>
             <hr />
-            <div class="Buy-Now-container"><button onclick="buyNowCallBack(${
-              product.id
-            })">Buy Now</button></div>
+<div class="Buy-Now-container">
+  <button onclick="buyNowCallBack(${product.id}, ${
+    product.price
+  })">Buy Now</button>
+</div>
           </section>
         </figcaption>
       </figure>
@@ -453,18 +465,24 @@ function buildViewProduct(product) {
 
 //#region basketData
 
-function buyNowCallBack(myProductId) {
+function buyNowCallBack(myProductId, myProductPrice) {
+  console.log(myProductId, myProductPrice);
+
   let itemFound = false;
+  let itemPrice = myProductPrice;
 
   basketData.forEach((item) => {
     if (item.id === myProductId) {
       item.amount += 1;
+      itemPrice = myProductPrice;
+      console.log(item);
+
       itemFound = true;
     }
   });
 
   if (!itemFound) {
-    basketData.push({ id: myProductId, amount: 1 });
+    basketData.push({ id: myProductId, amount: 1, Price: itemPrice });
   }
 
   saveData();
@@ -500,7 +518,7 @@ closeBtnModal.id = "closeBtnModal";
 let basketCart = document.getElementById("basketCart");
 basketCart.addEventListener("click", (e) => {
   getBasketTotal();
-  console.log(basketTotal);
+  console.log(basketTotalAmount);
 
   toggleModal();
   console.log("basket clicket");
@@ -508,18 +526,19 @@ basketCart.addEventListener("click", (e) => {
 const modal = document.getElementById("modal");
 
 function getModel() {
-  let myHtml = `<div id="modal" class="modal hidden">    
+  let myHtml = `
+  <div id="modal" class="modal hidden">    
   <aside>
       <div class="modelClose">
-        <span>close</span>
+        <span><img src="assets/Images/X.svg" alt="close-img"></span>
       </div>
       <section class="yourCart">
         <h3>Your Cart</h3>
       </section>
       <footer>
         <hgroup>
-          <h4 id="basketCartTotal">Subtotal (${basketTotal})</h4>
-          <h4>$</h4>
+          <h4 id="basketCartTotal">Subtotal (${basketTotalAmount})</h4>
+          <h4 id="basketCartTotalPrice">$${basketTotalPrice}</h4>
         </hgroup>
         <button>CONTINUE TO CHECKOUT</button>
         <p>Psst, get it now before it sells out.</p>

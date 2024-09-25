@@ -381,9 +381,51 @@ body {
   z-index: 1000;
 }
 .modal aside {
-  width: 300px;
+  width: 400px;
   height: 100%;
-  background-color: #514343;
+  background-color: #fff;
+}
+.modal aside .modelClose {
+  display: flex;
+  justify-content: flex-end;
+}
+.modal aside .modelClose img {
+  width: 25px;
+  height: auto;
+  display: block;
+  margin: 10px 10px 0 0;
+}
+.modal aside .yourCart {
+  padding: 0 2rem;
+}
+.modal aside .yourCart h3 {
+  color: #000;
+  font-size: 24px;
+}
+.modal aside footer {
+  color: #000;
+  margin-top: 4rem;
+  padding: 2rem;
+  box-shadow: rgba(0, 0, 0, 0.2509803922) 0px -10px 15px -5px;
+}
+.modal aside footer hgroup {
+  display: flex;
+  justify-content: space-between;
+}
+.modal aside footer button {
+  margin: 1.5rem 0;
+  width: 100%;
+  padding: 0.5rem 0;
+  font-weight: 900;
+  border: none;
+  color: #fff;
+  background-color: #000;
+}
+.modal aside footer button:hover {
+  cursor: pointer;
+}
+.modal aside footer p {
+  text-align: center;
 }
 
 .hidden {
