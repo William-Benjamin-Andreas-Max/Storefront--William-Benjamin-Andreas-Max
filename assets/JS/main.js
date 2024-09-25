@@ -3,7 +3,6 @@ if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("sw.js");
 }
 //#endregion
-
 //#region VARIABLES
 let categories = []; // Store categories
 let basketData = []; // Store basket data
@@ -36,7 +35,6 @@ let fetchedProducts = []; // Store fetched products
 myApp.appendChild(productsContainer);
 
 //#endregion
-
 //#region DATA FETCHING AND HANDLING
 getData(); // Fetch data
 
@@ -204,7 +202,6 @@ function createStars(rating) {
   return stars;
 }
 //#endregion
-
 //#region FOOTER
 function buildFooter() {
   let footer = document.createElement("footer");
@@ -252,7 +249,6 @@ buildFeaturedCategory();
 buildFooter();
 
 //#endregion
-
 //#region buildFeaturedCategory
 function buildFeaturedCategory() {
   let featuredCategory = document.createElement("section");
@@ -286,7 +282,6 @@ function FeaturedCategoryCallBack() {
   getProducts(["furniture"]);
 }
 //#endregion
-
 //#region HEADER
 function buildHeader() {
   let logoDiv = document.createElement("div");
@@ -316,7 +311,7 @@ function buildHeader() {
   searchIt();
 }
 //#endregion
-
+//#region Basket Total
 function getBasketTotal() {
   basketTotal = 0;
   basketData.forEach((myProduct) => {
@@ -333,7 +328,7 @@ function getBasketTotal() {
 
   console.log("Basket total:", basketTotal);
 }
-
+//#endregion
 //#region SEARCH
 function searchIt() {
   searchInput = document.getElementById("searchInput");
@@ -406,7 +401,6 @@ function displayProducts(data, categories) {
 }
 
 //#endregion
-
 //#region viewProduct
 function viewProduct(index) {
   const product = fetchedProducts[index];
@@ -450,7 +444,6 @@ function buildViewProduct(product) {
   productsContainer.innerHTML = productDetailsHtml;
 }
 //#endregion
-
 //#region basketData
 
 function buyNowCallBack(myProductId) {
