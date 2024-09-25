@@ -383,7 +383,19 @@ body {
 .modal aside {
   width: 300px;
   height: 100%;
-  background-color: #9f1717;
+  background-color: #ffffff;
+  border-left: black solid 1px;
+  padding-left: 0.5rem;
+}
+#modalClose{
+  position: absolute;
+  right: 1rem;
+  font-size: 30px;
+}
+#modal aside footer{
+  position: absolute;
+  bottom: 0;
+  
 }
 
 .hidden {

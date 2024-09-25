@@ -502,12 +502,14 @@ basketCart.addEventListener("click", (e) => {
 function getModel() {
   let myHtml = `<div id="modal" class="modal hidden" onclick="toggleModal()">    
   <aside onclick="event.stopPropagation()" >
-      <div class="modelClose">
-      <span id="modelClose">x</span>
-      </div>
-      <section class="yourCart">
-        <h3>Your Cart</h3>
-      </section>
+      <header>
+       <span id="modalClose">x</span>
+       <br>
+       <h3>Your Cart</h3>
+      </header>
+      <section>
+
+      </section> 
       <footer>
         <hgroup>
           <h4 id="basketCartTotal">Subtotal (${basketTotal})</h4>
