@@ -456,7 +456,6 @@ function buildViewProduct(product) {
 }
 //#endregion
 
-
 //#region basketData
 
 function buyNowCallBack(myProductId, myProductPrice) {
@@ -518,11 +517,10 @@ basketCart.addEventListener("click", (e) => {
 function getModel() {
   let myHtml = `<div id="modal" class="modal hidden" onclick="toggleModal()">    
   <aside onclick="event.stopPropagation()" >
-  let myHtml = `
-  <div id="modal" class="modal hidden">    
+  <div">    
   <aside>
       <div class="modelClose">
-        <span>close</span>
+        <span><img src="assets/Images/X.svg" alt="close" /></span>
       </div>
       <section class="yourCart">
         <h3>Your Cart</h3>

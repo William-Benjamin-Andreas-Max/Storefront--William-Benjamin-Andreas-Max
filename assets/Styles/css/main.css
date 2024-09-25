@@ -74,7 +74,7 @@ body {
   position: absolute;
   top: 25px;
   right: -10px;
-  background-color: #1a4d2e;
+  background-color: #1A4D2E;
   color: #fff;
   padding: 4px 10px;
   border-radius: 50%;
@@ -113,7 +113,7 @@ body {
   padding: 1.5rem 0;
 }
 .featuredCategory figcaption section header {
-  color: #8d7171;
+  color: #8D7171;
   margin-top: 0.5rem;
 }
 .featuredCategory figcaption section header h2 {
@@ -127,7 +127,7 @@ body {
   margin-bottom: 2rem;
 }
 .featuredCategory figcaption footer .buy-now {
-  background-color: #1a4d2e;
+  background-color: #1A4D2E;
   color: #fff;
   padding: 1rem 3rem;
   border: none;
@@ -214,7 +214,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f3f3f3;
+  background-color: #F3F3F3;
   width: 100%;
   max-width: 675px;
   height: 620px;
@@ -242,7 +242,7 @@ body {
 }
 
 .Buy-Now-container button {
-  background-color: #1a4d2e;
+  background-color: #1A4D2E;
   color: #fff;
   padding: 1rem 3rem;
   border: none;
@@ -393,7 +393,7 @@ body {
   width: 25px;
   height: auto;
   display: block;
-  margin: 10px 10px 0 0;
+  margin: 10px 20px 0 0;
 }
 .modal aside .yourCart {
   padding: 0 2rem;
@@ -453,4 +453,4 @@ body {
   .footerMain {
     margin-top: 10rem;
   }
-} /*# sourceMappingURL=main.css.map */
+}/*# sourceMappingURL=main.css.map */
