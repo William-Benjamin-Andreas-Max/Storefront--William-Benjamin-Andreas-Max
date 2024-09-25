@@ -3,7 +3,6 @@ if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("sw.js");
 }
 //#endregion
-
 //#region VARIABLES
 let categories = []; // Store categories
 let basketData = []; // Store basket data
@@ -37,7 +36,6 @@ let fetchedProducts = []; // Store fetched products
 myApp.appendChild(productsContainer);
 
 //#endregion
-
 //#region DATA FETCHING AND HANDLING
 getData(); // Fetch data
 
@@ -143,7 +141,6 @@ function getProducts(subCategories) {
 }
 
 //#endregion
-
 //#region UI FUNCTIONS
 function createButton(data) {
   let buttonDiv = document.createElement("section");
@@ -205,7 +202,6 @@ function createStars(rating) {
   return stars;
 }
 //#endregion
-
 //#region FOOTER
 function buildFooter() {
   let footer = document.createElement("footer");
@@ -253,7 +249,6 @@ buildFeaturedCategory();
 buildFooter();
 
 //#endregion
-
 //#region buildFeaturedCategory
 function buildFeaturedCategory() {
   let featuredCategory = document.createElement("section");
@@ -287,7 +282,6 @@ function FeaturedCategoryCallBack() {
   getProducts(["furniture"]);
 }
 //#endregion
-
 //#region HEADER
 function buildHeader() {
   let logoDiv = document.createElement("div");
@@ -317,7 +311,7 @@ function buildHeader() {
   searchIt();
 }
 //#endregion
-
+//#region Basket Total
 function getBasketTotal() {
   basketTotalAmount = 0;
   basketTotalPrice = 0;
@@ -416,7 +410,6 @@ function displayProducts(data, categories) {
 }
 
 //#endregion
-
 //#region viewProduct
 function viewProduct(index) {
   const product = fetchedProducts[index];
@@ -462,6 +455,7 @@ function buildViewProduct(product) {
   productsContainer.innerHTML = productDetailsHtml;
 }
 //#endregion
+
 
 //#region basketData
 
@@ -509,28 +503,26 @@ getBasketTotal();
 const overlay = document.createElement("div");
 overlay.classList = "overlay";
 
-const closeBtnModal = document.createElement("button");
-closeBtnModal.id = "closeBtnModal";
-
-// open basket
-// append
-
+// listen for click
 let basketCart = document.getElementById("basketCart");
 basketCart.addEventListener("click", (e) => {
   getBasketTotal();
+  // console.log(basketTotal);
   console.log(basketTotalAmount);
 
   toggleModal();
-  console.log("basket clicket");
+  // console.log("basket clicket");
 });
-const modal = document.getElementById("modal");
 
+// create modal
 function getModel() {
+  let myHtml = `<div id="modal" class="modal hidden" onclick="toggleModal()">    
+  <aside onclick="event.stopPropagation()" >
   let myHtml = `
   <div id="modal" class="modal hidden">    
   <aside>
       <div class="modelClose">
-        <span><img src="assets/Images/X.svg" alt="close-img"></span>
+        <span>close</span>
       </div>
       <section class="yourCart">
         <h3>Your Cart</h3>
@@ -546,11 +538,14 @@ function getModel() {
     </aside></div>`;
   productsContainer.innerHTML += myHtml;
 }
+
+// toggle modal
 function toggleModal() {
   const modal = document.getElementById("modal");
   modal.classList.toggle("hidden");
 }
 
+// Callback
 getModel();
 
 //#endregion
