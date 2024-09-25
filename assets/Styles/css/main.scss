@@ -486,7 +486,12 @@ $figcaption-BuyNowButton: #1A4D2E;
   width: 100%;
   border-left: black solid 1px;
   z-index: 1000;
+
+  aside::-webkit-scrollbar {
+    width: 0;
+  }
   aside{
+    overflow-x: scroll;
     width: 400px;
     height: 100%;
     background-color: #fff;
@@ -508,10 +513,13 @@ $figcaption-BuyNowButton: #1A4D2E;
       }
     }
     footer{
+      position: sticky;
+      bottom: 0;
       color: #000;
       margin-top: 4rem;
       padding: 2rem;
       box-shadow: #00000040 0px -10px 15px -5px;
+      background-color: #fff;
       hgroup{
         display: flex;
         justify-content: space-between;
@@ -546,6 +554,106 @@ $figcaption-BuyNowButton: #1A4D2E;
 
 /* #endregion */
 
+
+
+// #region cartItems
+
+.cartItemsContainer{
+
+  .cart-item{
+    position: relative;
+    display: flex;
+    margin: 2rem 0;
+
+.titlePrice {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  .price {
+    margin-top: auto; 
+  }
+
+}
+    img{
+      width: 100px;
+      height: 120px;
+      object-fit: cover;
+      aspect-ratio: 1/1;
+    }
+
+    section{
+      position: absolute;
+      display: flex;
+      flex-direction: column; 
+      justify-content: space-between; 
+      height: 100%;
+      right: 0;
+      top: 0;
+      span{
+        display: flex;
+        justify-content: flex-end;
+        img{
+          width: 25px;
+          height: auto;
+        }
+      }      
+    }
+  }
+
+  
+  ul{
+    list-style: none;
+  }
+
+
+  .item-details{
+    margin-left: 1rem;
+      max-width: 170px;
+  }
+
+  .plus-minusAmount {
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center; // 1. Center align vertically
+    border: 1px solid #eee;
+    border-radius: 5px; // 2. Add rounded corners
+    background-color: #f9f9f9; // 3. Light background for better contrast
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // 5. Subtle shadow for depth
+  
+    p {
+      text-align: center;
+      font-size: 1rem; // 6. Adjust font size for better readability
+      margin: 0 1rem; // 7. Add margin for spacing
+      color: #333; // 8. Darker text for contrast
+    }
+  
+    button {
+      padding: 0.3rem; // 9. Increased padding for a larger clickable area
+      border: none;
+      background-color: transparent;
+      cursor: pointer; // 10. Change cursor to pointer for better UX
+      transition: background-color 0.3s ease; // 11. Smooth transition for hover effect
+      border-radius: 5px 0px 0px 5px;
+      &:hover {
+        background-color: #e0e0e0; // 12. Change background on hover for feedback
+      }
+  
+      img {
+        width: 20px; // 14. Slightly larger for better visibility
+        height: auto;
+      }
+      &:last-of-type{
+        border-radius: 0px 5px 5px 0px;
+      }
+    }
+    
+  }
+  
+}
+
+// #endregion
 
 
 

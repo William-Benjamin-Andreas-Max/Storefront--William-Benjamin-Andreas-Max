@@ -332,7 +332,7 @@ function getBasketTotal() {
 
   let basketCartPrice = document.getElementById("basketCartTotalPrice");
   if (basketCartPrice) {
-    basketCartPrice.textContent = `$${basketTotalPrice}`;
+    basketCartPrice.textContent = `$${basketTotalPrice.toFixed(2)}`;
   }
 
   console.log("Basket total:", basketTotalAmount);
@@ -460,7 +460,6 @@ function buildViewProduct(product) {
 
 function buyNowCallBack(myProductId, myProductPrice) {
   console.log(myProductId, myProductPrice);
-
   let itemFound = false;
   let itemPrice = myProductPrice;
 
@@ -469,7 +468,6 @@ function buyNowCallBack(myProductId, myProductPrice) {
       item.amount += 1;
       itemPrice = myProductPrice;
       console.log(item);
-
       itemFound = true;
     }
   });
@@ -508,7 +506,7 @@ basketCart.addEventListener("click", (e) => {
   getBasketTotal();
   // console.log(basketTotal);
   console.log(basketTotalAmount);
-
+  displayCartItems();
   toggleModal();
   // console.log("basket clicket");
 });
@@ -520,10 +518,14 @@ function getModel() {
   <div">    
   <aside>
       <div class="modelClose">
-        <span><img src="assets/Images/X.svg" alt="close" /></span>
+        <span><img onclick="toggleModal()" src="assets/Images/X.svg" alt="close" /></span>
       </div>
       <section class="yourCart">
         <h3>Your Cart</h3>
+        <section class="cartItemsContainer">
+        <ul id="cart-items">
+        </ul>
+        </section>
       </section>
       <footer>
         <hgroup>
@@ -541,6 +543,108 @@ function getModel() {
 function toggleModal() {
   const modal = document.getElementById("modal");
   modal.classList.toggle("hidden");
+}
+
+function displayCartItems() {
+  let cartItemsContainer = document.getElementById("cart-items");
+  if (cartItemsContainer) {
+    cartItemsContainer.innerHTML = "";
+
+    if (basketData.length === 0) {
+      cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
+      return;
+    }
+
+    // Loop through each item in the basketData
+    basketData.forEach((item) => {
+      fetch(`https://dummyjson.com/products/${item.id}`)
+        .then((response) => {
+          if (!response.ok) throw new Error(`Error: ${response.status}`);
+          return response.json();
+        })
+        .then((product) => {
+          console.log(product);
+
+          let productHTML = `
+            <li class="cart-item" id="item-${item.id}">
+              <img src="${product.thumbnail}" alt="${product.title}" class="cart-item-image" />
+              <div class="item-details">
+              <div class="titlePrice">
+                <p>${product.title}</p>
+                <p class="">$${product.price}</p> 
+                </div>
+                <section>
+                  <span class="remove-product" data-id="${item.id}">
+                    <img src="assets/Images/Trash.svg" alt="Trash" />
+                  </span>
+                  <div class="plus-minusAmount">
+                    <button onclick="decreaseAmount(${item.id})">
+                      <img src="assets/Images/Minus.svg" alt="Minus" />
+                    </button>
+                    <p id="amount-${item.id}">${item.amount}</p>
+                    <button onclick="increaseAmount(${item.id})">
+                      <img src="assets/Images/Plus.svg" alt="Plus" />
+                    </button>
+                  </div>
+                </section>
+              </div>
+            </li>
+                          <hr>
+          `;
+          cartItemsContainer.innerHTML += productHTML;
+
+          // Add event listener to the newly created remove button
+          const removeButton = cartItemsContainer.querySelector(
+            `.remove-product[data-id="${item.id}"]`
+          );
+          removeButton.addEventListener("click", () => removeItem(item.id));
+        })
+        .catch((error) => {
+          console.error(error);
+          cartItemsContainer.innerHTML += `<p>Error fetching product details for ID: ${item.id}</p>`;
+        });
+    });
+  }
+}
+
+function increaseAmount(id) {
+  const product = basketData.find((basketItem) => basketItem.id === id);
+  if (product) {
+    product.amount += 1;
+    updateDisplay(id);
+    getBasketTotal();
+  }
+}
+
+function decreaseAmount(id) {
+  const product = basketData.find((basketItem) => basketItem.id === id);
+
+  if (product && product.amount > 0) {
+    product.amount -= 1;
+    updateDisplay(id);
+    getBasketTotal();
+  }
+  if (product.amount < 1) {
+    removeItem(id);
+  }
+}
+function updateDisplay(id) {
+  const amountElement = document.getElementById(`amount-${id}`);
+  const product = basketData.find((basketItem) => basketItem.id === id);
+  if (amountElement && product) {
+    amountElement.textContent = product.amount;
+  }
+  saveData();
+}
+
+function removeItem(id) {
+  const index = basketData.findIndex((item) => item.id === id); // Find the index of the item to remove
+  if (index !== -1) {
+    basketData.splice(index, 1); // Remove the item from basketData
+    saveData(); // Save updated basketData to localStorage
+    getBasketTotal(); // Update the total amounts
+    displayCartItems(); // Refresh the displayed cart items
+  }
 }
 
 // Callback
