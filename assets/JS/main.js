@@ -302,7 +302,7 @@ function buildHeader() {
   const searchInputHTML = `
   <div class="search">
   <img src="assets/Images/searchIcon.svg" alt="search-logo" />
-  <input id="searchInput" type="text"  placeholder="Search products..." />
+  <input id="searchInput" type="text"  placeholder="Search..." />
   </div>`;
 
   const cart = `
