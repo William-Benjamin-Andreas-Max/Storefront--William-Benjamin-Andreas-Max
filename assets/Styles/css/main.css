@@ -72,11 +72,7 @@ body {
   display: flex;
   position: relative;
   margin: 0 5rem;
-<<<<<<< HEAD
-  text-align: center;
-=======
   cursor: pointer;
->>>>>>> 463310454fc02928d023cfc1698556e787b11fd6
 }
 .cart-container img {
   width: 100%;
@@ -88,16 +84,11 @@ body {
   top: 25px;
   right: -10px;
   margin: auto;
-  background-color: #1A4D2E;
+  background-color: #1a4d2e;
   color: #fff;
-<<<<<<< HEAD
   border-radius: 100%;
   right: -3px;
   top: 2.2rem;
-=======
-  padding: 4px 10px;
-  border-radius: 100%;
->>>>>>> 463310454fc02928d023cfc1698556e787b11fd6
 }
 
 .featuredCategory {
@@ -109,7 +100,7 @@ body {
   width: 100%;
   height: 89vh;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   display: block;
 }
 .featuredCategory figcaption {
@@ -135,7 +126,7 @@ body {
   padding: 1.5rem 0;
 }
 .featuredCategory figcaption section header {
-  color: #8D7171;
+  color: #8d7171;
   margin-top: 0.5rem;
 }
 .featuredCategory figcaption section header h2 {
@@ -149,7 +140,7 @@ body {
   margin-bottom: 2rem;
 }
 .featuredCategory figcaption footer .buy-now {
-  background-color: #1A4D2E;
+  background-color: #1a4d2e;
   color: #fff;
   padding: 1rem 3rem;
   border: none;
@@ -236,7 +227,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #F3F3F3;
+  background-color: #f3f3f3;
   width: 100%;
   max-width: 675px;
   height: 620px;
@@ -273,7 +264,7 @@ body {
   }
 }
 .Buy-Now-container button {
-  background-color: #1A4D2E;
+  background-color: #1a4d2e;
   color: #fff;
   padding: 1rem 3rem;
   border: none;
@@ -495,7 +486,7 @@ body {
   width: 100px;
   height: 120px;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   aspect-ratio: 1/1;
 }
 .cartItemsContainer .cart-item section {
@@ -580,4 +571,4 @@ body {
     margin: auto 0 1rem 0 !important;
     padding: 0 !important;
   }
-}/*# sourceMappingURL=main.css.map */
+} /*# sourceMappingURL=main.css.map */
