@@ -302,6 +302,7 @@ body {
   cursor: pointer;
   background-color: transparent;
   position: relative;
+  color: #000;
 }
 
 .category-wrapper {
