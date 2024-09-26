@@ -572,7 +572,7 @@ body {
 }
 @media (max-width: 800px) {
   .featuredCategory figcaption {
-    height: 400px;
+    height: auto;
     width: 100%;
   }
   .featuredCategory section {
@@ -582,14 +582,29 @@ body {
   .cart-container {
     margin: 0;
     padding: 0;
+    width: 20%;
+  }
+  .cart-container p {
+    top: 18%;
+    right: 0;
   }
   .logo {
     display: flex;
+  }
+  .logo .header-logo {
+    width: 25% !important;
   }
   .search {
     width: 100% !important;
   }
   .search input {
     width: 100%;
+  }
+}
+@media (max-width: 600px) {
+  .category {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 }/*# sourceMappingURL=main.css.map */
