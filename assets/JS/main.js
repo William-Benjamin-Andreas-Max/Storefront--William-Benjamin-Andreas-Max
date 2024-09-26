@@ -10,7 +10,7 @@ let basketTotalAmount = 0; // Store basket total
 let basketTotalPrice = 0; // Store basket price
 readData();
 
-console.log(basketData);
+// console.log(basketData);
 let mainCategories = {
   Beauty: [],
   Fashion: [],
@@ -170,20 +170,27 @@ function createButton(data) {
   document.querySelectorAll(".category-wrapper").forEach((wrapper) => {
     wrapper.addEventListener("mouseover", () => showSubCategories(wrapper));
     wrapper.addEventListener("mouseout", () => hideSubCategories(wrapper));
+    wrapper.addEventListener("click", () => toggleSubCategories(wrapper));
   });
 }
 
+function toggleSubCategories(wrapper) {
+  let subCategoriesDiv = wrapper.querySelector(".subcategories");
+  if (subCategoriesDiv) {
+    subCategoriesDiv.classList.toggle("displaynone");
+  }
+}
 function showSubCategories(wrapper) {
   let subCategoriesDiv = wrapper.querySelector(".subcategories");
   if (subCategoriesDiv) {
     subCategoriesDiv.style.display = "block";
   }
 }
-
 function hideSubCategories(wrapper) {
   let subCategoriesDiv = wrapper.querySelector(".subcategories");
   if (subCategoriesDiv) {
     subCategoriesDiv.style.display = "none";
+    subCategoriesDiv.classList.remove("displaynone");
   }
 }
 
@@ -319,7 +326,7 @@ function getBasketTotal() {
   basketData.forEach((myProduct) => {
     basketTotalAmount += myProduct.amount;
     basketTotalPrice += myProduct.amount * myProduct.Price;
-    console.log(myProduct.Price);
+    // console.log(myProduct.Price);
   });
 
   document.getElementById("basket-total").textContent = basketTotalAmount;
@@ -335,15 +342,15 @@ function getBasketTotal() {
     basketCartPrice.textContent = `$${basketTotalPrice.toFixed(2)}`;
   }
 
-  console.log("Basket total:", basketTotalAmount);
+  // console.log("Basket total:", basketTotalAmount);
 }
 
 //#region SEARCH
 function searchIt() {
   searchInput = document.getElementById("searchInput");
-  searchInput.addEventListener("keypress", function (event) {
-    if (event.key === "Enter") {
-      let searchQuery = event.target.value;
+  searchInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      let searchQuery = e.target.value;
       searchProducts(searchQuery);
     }
   });
@@ -365,8 +372,8 @@ function searchProducts(searchQuery) {
     })
     .then((data) => {
       fetchedProducts = data.products;
-      displayProducts(data, []);
-      console.log(data);
+      displayProducts(data, searchQuery);
+      // console.log(data);
     })
     .catch((error) => {
       console.error(error);
@@ -374,15 +381,13 @@ function searchProducts(searchQuery) {
     });
 }
 
-function displayProducts(data, categories) {
+function displayProducts(data, searchQuery) {
   productsContainer.classList.add("products");
   productsContainer.innerHTML = "";
   let myHtml = "";
-  console.log(fetchedProducts);
+  // console.log(fetchedProducts);
 
-  productsHeader.innerHTML = `<h2>${
-    categories.length > 0 ? categories : "Search Results"
-  }</h2>`;
+  productsHeader.innerHTML = `<h2>${searchQuery}</h2>`;
 
   if (Array.isArray(data.products)) {
     data.products.forEach((categoriesProducts, index) => {
@@ -418,7 +423,7 @@ function viewProduct(index) {
 }
 
 function buildViewProduct(product) {
-  console.log(product);
+  // console.log(product);
 
   productsContainer.innerHTML = "";
   productsContainer.classList.remove("products");
@@ -459,7 +464,7 @@ function buildViewProduct(product) {
 //#region basketData
 
 function buyNowCallBack(myProductId, myProductPrice) {
-  console.log(myProductId, myProductPrice);
+  // console.log(myProductId, myProductPrice);
   let itemFound = false;
   let itemPrice = myProductPrice;
 
@@ -467,7 +472,7 @@ function buyNowCallBack(myProductId, myProductPrice) {
     if (item.id === myProductId) {
       item.amount += 1;
       itemPrice = myProductPrice;
-      console.log(item);
+      // console.log(item);
       itemFound = true;
     }
   });
@@ -478,7 +483,7 @@ function buyNowCallBack(myProductId, myProductPrice) {
 
   saveData();
   getBasketTotal();
-  console.log("callBack complete");
+  // console.log("callBack complete");
 }
 
 function saveData() {
@@ -505,7 +510,7 @@ let basketCart = document.getElementById("basketCart");
 basketCart.addEventListener("click", (e) => {
   getBasketTotal();
   // console.log(basketTotal);
-  console.log(basketTotalAmount);
+  // console.log(basketTotalAmount);
   displayCartItems();
   toggleModal();
   // console.log("basket clicket");
@@ -563,7 +568,7 @@ function displayCartItems() {
           return response.json();
         })
         .then((product) => {
-          console.log(product);
+          // console.log(product);
 
           let productHTML = `
             <li class="cart-item" id="item-${item.id}">
@@ -638,12 +643,14 @@ function updateDisplay(id) {
 }
 
 function removeItem(id) {
-  const index = basketData.findIndex((item) => item.id === id); // Find the index of the item to remove
-  if (index !== -1) {
-    basketData.splice(index, 1); // Remove the item from basketData
-    saveData(); // Save updated basketData to localStorage
-    getBasketTotal(); // Update the total amounts
-    displayCartItems(); // Refresh the displayed cart items
+  const index = basketData.findIndex((item) => item.id === id);
+  console.log(index);
+
+  if (index !== 1) {
+    basketData.splice(index, 1);
+    saveData();
+    getBasketTotal();
+    displayCartItems();
   }
 }
 

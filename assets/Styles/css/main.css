@@ -12,6 +12,14 @@ body {
   color: #333;
 }
 
+.block {
+  display: block;
+}
+
+.displaynone {
+  display: none !important;
+}
+
 .headerNav {
   display: grid;
   grid-template-columns: 0.82fr 1fr;
@@ -75,6 +83,7 @@ body {
   position: absolute;
   top: 25px;
   right: -10px;
+  margin: auto;
   background-color: #1A4D2E;
   color: #fff;
   padding: 4px 10px;
@@ -89,6 +98,8 @@ body {
 .featuredCategory img {
   width: 100%;
   height: 89vh;
+  -o-object-fit: cover;
+     object-fit: cover;
   display: block;
 }
 .featuredCategory figcaption {
@@ -242,6 +253,15 @@ body {
   margin: 1rem 0;
 }
 
+@media (max-width: 800px) {
+  .viewProduct figure {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    height: auto;
+    margin-bottom: 2rem;
+  }
+}
 .Buy-Now-container button {
   background-color: #1A4D2E;
   color: #fff;
@@ -307,14 +327,10 @@ body {
   background-color: #f0f0f0;
 }
 
-.category-wrapper:hover .subcategories {
-  display: block;
-}
-
 .footerMain {
   justify-content: center;
   align-items: center;
-  padding: 10rem 0;
+  padding: 0;
   background-color: var(--footer-bg);
   max-width: var(--width-full);
   height: 200px;
@@ -531,19 +547,27 @@ body {
   border-radius: 0px 5px 5px 0px;
 }
 
-@media (max-width: 1000px) {
-  .footerMain {
-    margin-top: 30rem;
-  }
-}
 @media (max-width: 1400px) {
   .headerNav {
     display: flex;
     flex-direction: column-reverse;
   }
 }
-@media (max-width: 1200px) {
-  .footerMain {
-    margin-top: 10rem;
+@media (max-width: 1100px) {
+  .featuredCategory figcaption {
+    left: 50%;
+    padding: 2rem 3rem 0 3rem;
+  }
+  .featuredCategory figcaption section header {
+    color: #fff;
+  }
+  .featuredCategory figcaption section .featuredCategoryText {
+    color: #fff;
+  }
+  .featuredCategory footer {
+    display: flex;
+    justify-content: center;
+    margin: auto 0 1rem 0 !important;
+    padding: 0 !important;
   }
 }/*# sourceMappingURL=main.css.map */
