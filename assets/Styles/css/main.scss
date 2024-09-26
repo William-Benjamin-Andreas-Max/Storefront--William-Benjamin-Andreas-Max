@@ -38,16 +38,13 @@ body {
 
 
 .headerNav {
+  width: 100%;
   display: grid;
-  grid-template-columns: .82fr 1fr;
+  grid-template-columns:.82fr 1fr;
   align-items: center;
 
   .logo {
-    width: 100%;
-    grid-column: 2;
     display: flex;
-    justify-content: flex-end;
-
    > img {
       width: 160px;
       height: auto;
@@ -717,5 +714,18 @@ $figcaption-BuyNowButton: #1A4D2E;
       margin: 0;
       padding: 0;
     }
+}
+.cart-container{
+  margin: 0;
+  padding: 0;
+}
+.logo{
+  display: flex;
+}
+.search{
+  width: 100% !important;
+  input{
+    width: 100%;
+  }
 }
 }

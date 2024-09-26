@@ -21,15 +21,13 @@ body {
 }
 
 .headerNav {
+  width: 100%;
   display: grid;
   grid-template-columns: 0.82fr 1fr;
   align-items: center;
 }
 .headerNav .logo {
-  width: 100%;
-  grid-column: 2;
   display: flex;
-  justify-content: flex-end;
 }
 .headerNav .logo > img {
   width: 160px;
@@ -580,5 +578,18 @@ body {
   .featuredCategory section {
     margin: 0;
     padding: 0;
+  }
+  .cart-container {
+    margin: 0;
+    padding: 0;
+  }
+  .logo {
+    display: flex;
+  }
+  .search {
+    width: 100% !important;
+  }
+  .search input {
+    width: 100%;
   }
 }/*# sourceMappingURL=main.css.map */
