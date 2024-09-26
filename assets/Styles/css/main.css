@@ -72,7 +72,11 @@ body {
   display: flex;
   position: relative;
   margin: 0 5rem;
+<<<<<<< HEAD
+  text-align: center;
+=======
   cursor: pointer;
+>>>>>>> 463310454fc02928d023cfc1698556e787b11fd6
 }
 .cart-container img {
   width: 100%;
@@ -86,8 +90,14 @@ body {
   margin: auto;
   background-color: #1A4D2E;
   color: #fff;
+<<<<<<< HEAD
+  border-radius: 100%;
+  right: -3px;
+  top: 2.2rem;
+=======
   padding: 4px 10px;
   border-radius: 100%;
+>>>>>>> 463310454fc02928d023cfc1698556e787b11fd6
 }
 
 .featuredCategory {
