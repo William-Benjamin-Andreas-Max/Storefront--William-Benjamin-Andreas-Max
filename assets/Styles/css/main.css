@@ -576,6 +576,12 @@ body {
   }
 }
 @media (max-width: 800px) {
+  .featuredCategory {
+    height: 70vh;
+  }
+  .featuredCategory img {
+    height: 100%;
+  }
   .featuredCategory figcaption {
     height: auto;
     width: 100%;
@@ -595,6 +601,7 @@ body {
   }
   .logo {
     display: flex;
+    margin: 0 1rem;
   }
   .logo .header-logo {
     width: 25% !important;

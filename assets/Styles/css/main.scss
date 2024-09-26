@@ -711,6 +711,10 @@ $figcaption-BuyNowButton: #1A4D2E;
 
 @media (max-width: 800px) {
   .featuredCategory{
+    height: 70vh;
+    img{
+      height: 100%;
+    }
     figcaption{
       height: auto;
       width: 100%;
@@ -731,6 +735,7 @@ $figcaption-BuyNowButton: #1A4D2E;
 }
 .logo{
   display: flex;
+  margin: 0 1rem;
   .header-logo{
     width: 25% !important;
   }
