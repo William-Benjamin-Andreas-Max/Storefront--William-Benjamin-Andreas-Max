@@ -84,11 +84,10 @@ body {
   top: 25px;
   right: -10px;
   margin: auto;
-  background-color: #1a4d2e;
+  background-color: #1A4D2E;
   color: #fff;
+  padding: 2px 8px;
   border-radius: 100%;
-  right: -3px;
-  top: 2.2rem;
 }
 
 .featuredCategory {
@@ -100,7 +99,7 @@ body {
   width: 100%;
   height: 89vh;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   display: block;
 }
 .featuredCategory figcaption {
@@ -126,7 +125,7 @@ body {
   padding: 1.5rem 0;
 }
 .featuredCategory figcaption section header {
-  color: #8d7171;
+  color: #8D7171;
   margin-top: 0.5rem;
 }
 .featuredCategory figcaption section header h2 {
@@ -140,7 +139,7 @@ body {
   margin-bottom: 2rem;
 }
 .featuredCategory figcaption footer .buy-now {
-  background-color: #1a4d2e;
+  background-color: #1A4D2E;
   color: #fff;
   padding: 1rem 3rem;
   border: none;
@@ -227,7 +226,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f3f3f3;
+  background-color: #F3F3F3;
   width: 100%;
   max-width: 675px;
   height: 620px;
@@ -264,7 +263,7 @@ body {
   }
 }
 .Buy-Now-container button {
-  background-color: #1a4d2e;
+  background-color: #1A4D2E;
   color: #fff;
   padding: 1rem 3rem;
   border: none;
@@ -486,7 +485,7 @@ body {
   width: 100px;
   height: 120px;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   aspect-ratio: 1/1;
 }
 .cartItemsContainer .cart-item section {
@@ -571,4 +570,4 @@ body {
     margin: auto 0 1rem 0 !important;
     padding: 0 !important;
   }
-} /*# sourceMappingURL=main.css.map */
+}/*# sourceMappingURL=main.css.map */
