@@ -20,6 +20,7 @@ $product-shadow: rgba(0, 0, 0, 0.1);
 }
 
 // Set body background and font
+
 body {
   font-family: Poppins;
   background-color: $footer-background;
@@ -42,6 +43,7 @@ body {
   align-items: center;
 
   .logo {
+    width: 100%;
     grid-column: 2;
     display: flex;
     justify-content: flex-end;
@@ -703,4 +705,17 @@ $figcaption-BuyNowButton: #1A4D2E;
       padding: 0 !important;
     }
   }
+}
+
+@media (max-width: 800px) {
+  .featuredCategory{
+    figcaption{
+      height: 400px;
+      width: 100%;
+    }
+    section{
+      margin: 0;
+      padding: 0;
+    }
+}
 }

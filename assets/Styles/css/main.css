@@ -26,6 +26,7 @@ body {
   align-items: center;
 }
 .headerNav .logo {
+  width: 100%;
   grid-column: 2;
   display: flex;
   justify-content: flex-end;
@@ -569,5 +570,15 @@ body {
     justify-content: center;
     margin: auto 0 1rem 0 !important;
     padding: 0 !important;
+  }
+}
+@media (max-width: 800px) {
+  .featuredCategory figcaption {
+    height: 400px;
+    width: 100%;
+  }
+  .featuredCategory section {
+    margin: 0;
+    padding: 0;
   }
 }/*# sourceMappingURL=main.css.map */
