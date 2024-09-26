@@ -21,10 +21,15 @@ $product-shadow: rgba(0, 0, 0, 0.1);
 
 // Set body background and font
 
+body::-webkit-scrollbar {
+  width: 0;
+}
+
 body {
   font-family: Poppins;
   background-color: $footer-background;
   color: #333;
+  display: block;
 }
 
 .block{
