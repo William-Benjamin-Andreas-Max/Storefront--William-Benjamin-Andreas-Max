@@ -302,7 +302,7 @@ function buildHeader() {
   const searchInputHTML = `
   <div class="search">
   <img src="assets/Images/searchIcon.svg" alt="search-logo" />
-  <input id="searchInput" type="text"  placeholder="Search products..." />
+  <input id="searchInput" type="text"  placeholder="Search" />
   </div>`;
 
   const cart = `
@@ -318,7 +318,7 @@ function buildHeader() {
   searchIt();
 }
 //#endregion
-//#region Basket Total
+//#region Basket price/Total
 function getBasketTotal() {
   basketTotalAmount = 0;
   basketTotalPrice = 0;
@@ -344,7 +344,7 @@ function getBasketTotal() {
 
   // console.log("Basket total:", basketTotalAmount);
 }
-
+//#endregion
 //#region SEARCH
 function searchIt() {
   searchInput = document.getElementById("searchInput");
@@ -460,7 +460,6 @@ function buildViewProduct(product) {
   productsContainer.innerHTML = productDetailsHtml;
 }
 //#endregion
-
 //#region basketData
 
 function buyNowCallBack(myProductId, myProductPrice) {
@@ -501,7 +500,8 @@ function readData() {
 }
 
 getBasketTotal();
-
+//#endregion
+//#region Create basket view and toggle modal
 const overlay = document.createElement("div");
 overlay.classList = "overlay";
 
@@ -549,7 +549,8 @@ function toggleModal() {
   const modal = document.getElementById("modal");
   modal.classList.toggle("hidden");
 }
-
+//#endregion
+//#region display cart items and remove when product under 1
 function displayCartItems() {
   let cartItemsContainer = document.getElementById("cart-items");
   if (cartItemsContainer) {
@@ -611,7 +612,8 @@ function displayCartItems() {
     });
   }
 }
-
+//#endregion
+//#region Increase, Decrease products + -
 function increaseAmount(id) {
   const product = basketData.find((basketItem) => basketItem.id === id);
   if (product) {
@@ -645,13 +647,10 @@ function updateDisplay(id) {
 function removeItem(id) {
   const index = basketData.findIndex((item) => item.id === id);
   console.log(index);
-
-  if (index !== 1) {
-    basketData.splice(index, 1);
-    saveData();
-    getBasketTotal();
-    displayCartItems();
-  }
+  basketData.splice(index, 1);
+  saveData();
+  getBasketTotal();
+  displayCartItems();
 }
 
 // Callback
