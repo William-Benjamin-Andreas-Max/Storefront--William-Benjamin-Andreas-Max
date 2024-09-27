@@ -346,6 +346,8 @@ body {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  margin: auto;
+  width: 100%;
 }
 .lists ul {
   display: flex;
@@ -359,6 +361,7 @@ body {
   margin-bottom: var(--padding-sm);
   font-size: var(--font-size-md);
   font-weight: 400;
+  width: 200px;
 }
 .lists ul li a {
   text-decoration: none;

@@ -444,6 +444,8 @@ $figcaption-BuyNowButton: #1A4D2E;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  margin: auto;
+  width: 100%;
 
   ul {
     display: flex;
@@ -457,6 +459,7 @@ $figcaption-BuyNowButton: #1A4D2E;
       margin-bottom: var(--padding-sm);
       font-size: var(--font-size-md);
       font-weight: 400;
+      width: 200px;
     }
 
     li a {
