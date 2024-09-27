@@ -597,6 +597,7 @@ function displayCartItems() {
             </li>
                           <hr>
           `;
+          cartItemsContainer.innerHTML += productHTML;
         })
         .catch((error) => {
           console.error(error);
