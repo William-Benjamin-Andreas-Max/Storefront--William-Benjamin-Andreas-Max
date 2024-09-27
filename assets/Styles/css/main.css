@@ -300,6 +300,7 @@ body {
   border: none;
   border-radius: 5px;
   font-size: 1rem;
+  text-decoration: underline;
   cursor: pointer;
   background-color: transparent;
   position: relative;
