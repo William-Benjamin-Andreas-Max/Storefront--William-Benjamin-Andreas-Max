@@ -580,7 +580,7 @@ function displayCartItems() {
                 <p class="">$${product.price}</p> 
                 </div>
                 <section>
-                  <span class="remove-product" data-id="${item.id}">
+                  <span class="remove-product" onclick="removeItem(${item.id})">
                     <img class="trash" src="assets/Images/Trash.svg" alt="Trash" />
                   </span>
                   <div class="plus-minusAmount">
@@ -597,13 +597,6 @@ function displayCartItems() {
             </li>
                           <hr>
           `;
-          cartItemsContainer.innerHTML += productHTML;
-
-          // Add event listener to the newly created remove button
-          const removeButton = cartItemsContainer.querySelector(
-            `.remove-product[data-id="${item.id}"]`
-          );
-          removeButton.addEventListener("click", () => removeItem(item.id));
         })
         .catch((error) => {
           console.error(error);
