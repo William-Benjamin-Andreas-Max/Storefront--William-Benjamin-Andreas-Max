@@ -3,6 +3,7 @@ if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("sw.js");
 }
 //#endregion
+
 //#region VARIABLES
 let categories = []; // Store categories
 let basketData = []; // Store basket data
@@ -36,7 +37,9 @@ let fetchedProducts = []; // Store fetched products
 myApp.appendChild(productsContainer);
 
 //#endregion
+
 //#region DATA FETCHING AND HANDLING
+
 getData(); // Fetch data
 
 function getData() {
@@ -141,6 +144,7 @@ function getProducts(subCategories) {
 }
 
 //#endregion
+
 //#region UI FUNCTIONS
 function createButton(data) {
   let buttonDiv = document.createElement("section");
@@ -209,6 +213,7 @@ function createStars(rating) {
   return stars;
 }
 //#endregion
+
 //#region FOOTER
 function buildFooter() {
   let footer = document.createElement("footer");
@@ -256,6 +261,7 @@ buildFeaturedCategory();
 buildFooter();
 
 //#endregion
+
 //#region buildFeaturedCategory
 function buildFeaturedCategory() {
   let featuredCategory = document.createElement("section");
@@ -289,6 +295,7 @@ function FeaturedCategoryCallBack() {
   getProducts(["home-decoration"]);
 }
 //#endregion
+
 //#region HEADER
 function buildHeader() {
   let logoDiv = document.createElement("div");
@@ -318,6 +325,7 @@ function buildHeader() {
   searchIt();
 }
 //#endregion
+
 //#region Basket price/Total
 function getBasketTotal() {
   basketTotalAmount = 0;
@@ -345,6 +353,7 @@ function getBasketTotal() {
   // console.log("Basket total:", basketTotalAmount);
 }
 //#endregion
+
 //#region SEARCH
 function searchIt() {
   searchInput = document.getElementById("searchInput");
@@ -415,6 +424,7 @@ function displayProducts(data, searchQuery) {
 }
 
 //#endregion
+
 //#region viewProduct
 function viewProduct(index) {
   const product = fetchedProducts[index];
@@ -460,6 +470,7 @@ function buildViewProduct(product) {
   productsContainer.innerHTML = productDetailsHtml;
 }
 //#endregion
+
 //#region basketData
 
 function buyNowCallBack(myProductId, myProductPrice) {
@@ -501,6 +512,7 @@ function readData() {
 
 getBasketTotal();
 //#endregion
+
 //#region Create basket view and toggle modal
 const overlay = document.createElement("div");
 overlay.classList = "overlay";
@@ -550,6 +562,7 @@ function toggleModal() {
   modal.classList.toggle("hidden");
 }
 //#endregion
+
 //#region display cart items and remove when product under 1
 function displayCartItems() {
   let cartItemsContainer = document.getElementById("cart-items");
@@ -580,7 +593,7 @@ function displayCartItems() {
                 <p class="">$${product.price}</p> 
                 </div>
                 <section>
-                  <span class="remove-product" onclick="removeItem(${item.id})">
+                  <span class="remove-product" data-id="${item.id}">
                     <img class="trash" src="assets/Images/Trash.svg" alt="Trash" />
                   </span>
                   <div class="plus-minusAmount">
@@ -598,6 +611,12 @@ function displayCartItems() {
                           <hr>
           `;
           cartItemsContainer.innerHTML += productHTML;
+
+          // Add event listener to the newly created remove button
+          const removeButton = cartItemsContainer.querySelector(
+            `.remove-product[data-id="${item.id}"]`
+          );
+          removeButton.addEventListener("click", () => removeItem(item.id));
         })
         .catch((error) => {
           console.error(error);
@@ -607,6 +626,7 @@ function displayCartItems() {
   }
 }
 //#endregion
+
 //#region Increase, Decrease products + -
 function increaseAmount(id) {
   const product = basketData.find((basketItem) => basketItem.id === id);
