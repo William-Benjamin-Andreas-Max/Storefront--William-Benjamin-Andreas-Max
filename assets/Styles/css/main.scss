@@ -90,25 +90,35 @@ body {
   }
 }
 
-.cart-container {
+.cart-container{
   display: flex;
   position: relative;
   margin: 0 5rem;
   cursor: pointer;
-  img {
+  img{
     width: 100%;
     height: auto;
     display: block;
   }
-  p {
+  div{
     position: absolute;
-    top: 25px;
-    right: -10px;
-    margin: auto;
-    background-color: #1a4d2e;
-    color: #fff;
-    padding: 2px 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 33px;
+    right: -7px;
+    min-height: 24px;
+    min-width: 24px;
     border-radius: 100%;
+    background-color: #1A4D2E;
+    margin: 0;
+    padding: 0;
+  }
+  p{
+    color: #fff;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
   }
 }
 

@@ -308,7 +308,7 @@ function buildHeader() {
   const cart = `
    <div id="basketCart" class="cart-container">
    <img src="assets/Images/Cart.svg" alt="Cart" />
-   <p id="basket-total">${basketTotalAmount}</p>
+   <div><p id="basket-total">${basketTotalAmount}</p></div>
  </div>
 `;
 
