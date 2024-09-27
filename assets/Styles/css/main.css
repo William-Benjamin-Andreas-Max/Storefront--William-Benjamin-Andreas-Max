@@ -75,10 +75,7 @@ body {
 .cart-container {
   display: flex;
   position: relative;
-<<<<<<< Updated upstream
-=======
   text-align: center;
->>>>>>> Stashed changes
   margin: 0 5rem;
   cursor: pointer;
 }
@@ -96,17 +93,12 @@ body {
   height: 20PX;
   font-size: 12px;
   position: absolute;
-<<<<<<< Updated upstream
   top: 25px;
   right: -10px;
   margin: auto;
   background-color: #1A4D2E;
   color: #fff;
   padding: 2px 8px;
-=======
-  background-color: #1A4D2E;
-  color: #fff;
->>>>>>> Stashed changes
   border-radius: 100%;
 }
 
