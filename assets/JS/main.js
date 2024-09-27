@@ -537,7 +537,7 @@ function getModel() {
           <h4 id="basketCartTotal">Subtotal (${basketTotalAmount})</h4>
           <h4 id="basketCartTotalPrice">$${basketTotalPrice}</h4>
         </hgroup>
-        <button>CONTINUE TO CHECKOUT</button>
+        <button> <a target="_blank" href="https://checkout.stripe.dev/">CONTINUE TO CHECKOUT</a></button>
         <p>Psst, get it now before it sells out.</p>
       </footer>
     </aside></div>`;

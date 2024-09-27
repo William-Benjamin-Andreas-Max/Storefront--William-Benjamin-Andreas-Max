@@ -88,7 +88,7 @@ body {
   top: 25px;
   right: -10px;
   margin: auto;
-  background-color: #1A4D2E;
+  background-color: #1a4d2e;
   color: #fff;
   padding: 2px 8px;
   border-radius: 100%;
@@ -130,7 +130,7 @@ body {
   padding: 1.5rem 0;
 }
 .featuredCategory figcaption section header {
-  color: #8D7171;
+  color: #8d7171;
   margin-top: 0.5rem;
 }
 .featuredCategory figcaption section header h2 {
@@ -144,7 +144,7 @@ body {
   margin-bottom: 2rem;
 }
 .featuredCategory figcaption footer .buy-now {
-  background-color: #1A4D2E;
+  background-color: #1a4d2e;
   color: #fff;
   padding: 1rem 3rem;
   border: none;
@@ -231,7 +231,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #F3F3F3;
+  background-color: #f3f3f3;
   width: 100%;
   max-width: 675px;
   height: 620px;
@@ -268,7 +268,7 @@ body {
   }
 }
 .Buy-Now-container button {
-  background-color: #1A4D2E;
+  background-color: #1a4d2e;
   color: #fff;
   padding: 1rem 3rem;
   border: none;
@@ -300,7 +300,7 @@ body {
   border: none;
   border-radius: 5px;
   font-size: 1rem;
-  text-decoration: underline;
+  text-decoration: none;
   cursor: pointer;
   background-color: transparent;
   position: relative;
@@ -453,13 +453,16 @@ body {
   margin: 1.5rem 0;
   width: 100%;
   padding: 0.5rem 0;
-  font-weight: 900;
   border: none;
-  color: #fff;
   background-color: #000;
 }
 .modal aside footer button:hover {
   cursor: pointer;
+}
+.modal aside footer button a {
+  font-weight: 900;
+  text-decoration: none;
+  color: #fff;
 }
 .modal aside footer p {
   text-align: center;
