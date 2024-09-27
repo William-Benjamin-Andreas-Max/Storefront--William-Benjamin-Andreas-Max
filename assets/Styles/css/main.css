@@ -371,6 +371,11 @@ body {
   font-size: var(--font-size-xl);
 }
 
+@media (max-width: 680px) {
+  .lists {
+    display: grid;
+  }
+}
 .ratings {
   display: flex;
   flex-direction: column;

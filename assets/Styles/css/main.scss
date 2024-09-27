@@ -431,7 +431,6 @@ $figcaption-BuyNowButton: #1A4D2E;
 
 // #region FOOTER
 .footerMain {
-  // display: flex;
   justify-content: center;
   align-items: center;
   padding: 0;
@@ -446,30 +445,37 @@ $figcaption-BuyNowButton: #1A4D2E;
   justify-content: center;
   flex-wrap: wrap;
 
+  
   ul {
     display: flex;
     flex-direction: column;
     list-style: none;
     color: var(--black);
     padding: 2rem;
-
+    
     li,
     p {
       margin-bottom: var(--padding-sm);
       font-size: var(--font-size-md);
       font-weight: 400;
     }
-
+    
     li a {
       text-decoration: none;
       color: var(--black);
     }
-
+    
     h3 {
       margin-bottom: var(--padding-md);
       color: var(--light);
       font-size: var(--font-size-xl);
     }
+  }
+}
+
+@media (max-width: 680px) {
+  .lists{
+    display: grid;
   }
 }
 
@@ -769,3 +775,5 @@ $figcaption-BuyNowButton: #1A4D2E;
     flex-wrap: wrap;
   }
 }
+
+
