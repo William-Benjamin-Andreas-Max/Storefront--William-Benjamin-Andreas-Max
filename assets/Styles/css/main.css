@@ -123,6 +123,7 @@ body {
 }
 .featuredCategory figcaption section .new-arrival,
 .featuredCategory figcaption section .featuredCategoryText {
+  padding-top: 1rem;
   color: #514343;
 }
 .featuredCategory figcaption section .featuredCategoryText {
