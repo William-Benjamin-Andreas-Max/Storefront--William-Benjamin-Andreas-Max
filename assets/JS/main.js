@@ -286,7 +286,7 @@ function buildFeaturedCategory() {
 }
 
 function FeaturedCategoryCallBack() {
-  getProducts(["furniture"]);
+  getProducts(["home-decoration"]);
 }
 //#endregion
 //#region HEADER
